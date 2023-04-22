@@ -1,5 +1,6 @@
 ﻿using Quiz.Core.Core;
 using Quiz.Core.Services;
+using System.Windows;
 
 namespace Quiz.Core.ViewModels
 {
@@ -16,11 +17,14 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        public RelayCommand CloseAppCommand { get; set; }
+        public RelayCommand MinimalizeAppCommand { get; set; }
         public MainWindowViewModel(INavigationService navigationService)
         {
             Navigation = navigationService;
             Navigation.NavigateTo<MainViewModel>();
+            CloseAppCommand = new RelayCommand(o => { Application.Current.Shutdown(); }, o=> true);
+            MinimalizeAppCommand = new RelayCommand(o => { Application.Current.MainWindow.WindowState = WindowState.Minimized; }, o => true);
         }
     }
 }

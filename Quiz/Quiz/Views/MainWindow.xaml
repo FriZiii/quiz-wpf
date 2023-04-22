@@ -5,15 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quiz"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="Okno"/>
-        <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}">
+        Title="MainWindow" Height="720" Width="1280" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+    <Border CornerRadius="20" Background="#FFFFFF">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             
-        </ContentControl>
-    </Grid>
+            <!--Top Bar-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 15 0">
+                <Button Height="20" Width="20" Margin="5 0"
+                        Content="-" Command="{Binding MinimalizeAppCommand}"/>
+                <Button Height="20" Width="20" Margin="5 0"
+                        Content="X" Command="{Binding CloseAppCommand}"/>
+            </StackPanel>
+            
+            <!--Content-->
+            <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}">
+            
+            </ContentControl>
+        </Grid>
+    </Border>
 </Window>
