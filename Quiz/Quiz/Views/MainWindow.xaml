@@ -23,11 +23,11 @@
             </Grid.RowDefinitions>
             
             <!--Top Bar-->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 15 0">
-                <Button Height="20" Width="20" Margin="5 0"
-                        Content="-" Command="{Binding MinimalizeAppCommand}"/>
-                <Button Height="20" Width="20" Margin="5 0"
-                        Content="X" Command="{Binding CloseAppCommand}"/>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 15 0">
+                <Button Style="{DynamicResource TopBarButtonStyle}" Height="25" Width="25" Margin="5 0" Background="#F3F3F3" Foreground="#000000" BorderThickness="0"
+                        Content="🗕" Command="{Binding MinimalizeAppCommand}"/>
+                <Button Style="{DynamicResource TopBarButtonStyle}" Height="25" Width="25" Margin="5 0" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0"
+                        Content="🗙" Command="{Binding CloseAppCommand}"/>
             </StackPanel>
             
             <!--Content-->

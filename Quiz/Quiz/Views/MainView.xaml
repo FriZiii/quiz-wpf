@@ -5,18 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Quiz.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="720" d:DesignWidth="1280">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="QUIZ" FontSize="150" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-        <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0"
-                FontSize="24" FontWeight="Light" FontFamily="Inter"
-                Grid.Column="0" Content="Create" Height="80" Width="90" Command="{Binding NavigateToCreateCommand}"/>
-        <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0"
-                FontSize="24" FontWeight="Light" FontFamily="Inter" 
-                Grid.Column="1" Content="Search" Height="80" Width="90" Command="{Binding NavigateToSearchCommand}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="QUIZ" FontSize="240" FontWeight="ExtraBold" FontFamily="Inter" Foreground="#2E86DE"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 100 0 0"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 60 0"
+                FontSize="64" FontWeight="Light" FontFamily="Inter"
+                Grid.Column="0" Content="Create" Height="200" Width="400" Command="{Binding NavigateToCreateCommand}"/>
+            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 -60 0"
+                    FontSize="64" FontWeight="Light" FontFamily="Inter" 
+                    Grid.Column="1" Content="Search" Height="200" Width="400" Command="{Binding NavigateToSearchCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
