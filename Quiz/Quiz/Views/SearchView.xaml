@@ -8,9 +8,17 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="Transparent">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="30 0 0 0"
+                FontSize="32" FontWeight="Light" FontFamily="Inter"
+                Grid.Row="0" Content="🠘" Height="30" Width="70" Command="{Binding NavigateToMainViewCommand}"
+                HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Search" FontSize="100"/>
-            <Button Content="Back" Height="50" Command="{Binding NavigateToMainViewCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

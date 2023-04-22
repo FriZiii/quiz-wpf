@@ -4,13 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Quiz.Views"
+             xmlns:userControls="clr-namespace:Quiz.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="720" d:DesignWidth="1280"
              Background="Transparent">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Create" FontSize="100"/>
-            <Button Content="Back" Height="50" Command="{Binding NavigateToMainViewCommand}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="30 0 0 0"
+                FontSize="32" FontWeight="Light" FontFamily="Inter"
+                Grid.Row="0" Content="🠘" Height="30" Width="70" Command="{Binding NavigateToMainViewCommand}"
+                HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Margin="0 80 0 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="400">
+                <ItemsControl ItemsSource="{Binding NewQuestionList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <userControls:NewQuestionView/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 0 0"
+                FontSize="12" FontWeight="Light" FontFamily="Inter"
+                Content="Add new..." Height="30" Width="70" Command="{Binding AddNewQuestionCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
