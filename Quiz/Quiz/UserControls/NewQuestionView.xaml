@@ -21,8 +21,8 @@
 
         <!--Question-->
         <Border Grid.Column="0" Grid.Row="0" CornerRadius="15" Background="#54A0FF" Margin="15" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal" Margin="50 5">
-                <TextBlock FontSize="22" Text="{Binding QuestionNumber}"  VerticalAlignment="Center" Margin="0 0 10 0" Foreground="#ffffff"/>
+            <StackPanel Orientation="Horizontal" Margin="30 5">
+                <TextBlock FontSize="22" Text="{Binding QuestionNumber, StringFormat=#{0}}"  VerticalAlignment="Center" Margin="0 0 20 0" Foreground="#ffffff"/>
                 <TextBox Text="{Binding Question}" FontSize="22" Width="648" VerticalAlignment="Center" BorderThickness="0"/>
             </StackPanel>
         </Border>
