@@ -7,8 +7,9 @@
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
-    <Border CornerRadius="20" Background="#910f53">
-        
+    <Border CornerRadius="20" Background="#ffffff">
+
+        <!--Moving the window-->
         <behaviors:Interaction.Triggers>
             <behaviors:EventTrigger EventName="MouseDown">
                 <behaviors:InvokeCommandAction Command="{Binding MouseDownCommand}" />
@@ -30,9 +31,7 @@
             </StackPanel>
             
             <!--Content-->
-            <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}">
-            
-            </ContentControl>
+            <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}"/>
         </Grid>
     </Border>
 </Window>

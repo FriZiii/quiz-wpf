@@ -6,17 +6,23 @@
              xmlns:view="clr-namespace:Quiz.Views">
     <Application.Resources>
 
-        <DataTemplate DataType="{x:Type TypeName=viewModel:MainViewModel}">
-            <view:MainView/>
-        </DataTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModel:MainViewModel}">
+                <view:MainView/>
+            </DataTemplate>
         
-        <DataTemplate DataType="{x:Type TypeName=viewModel:CreateViewModel}">
-            <view:CreateView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type TypeName=viewModel:CreateViewModel}">
+                <view:CreateView/>
+            </DataTemplate>
         
-        <DataTemplate DataType="{x:Type TypeName=viewModel:SearchViewModel}">
-            <view:SearchView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type TypeName=viewModel:SearchViewModel}">
+                <view:SearchView/>
+            </DataTemplate>
         
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

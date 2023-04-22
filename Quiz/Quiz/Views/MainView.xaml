@@ -11,7 +11,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Content="Create" Height="80" Width="90" Command="{Binding NavigateToCreateCommand}"/>
-        <Button Grid.Column="1" Content="Search" Height="80" Width="90" Command="{Binding NavigateToSearchCommand}"/>
+        <TextBlock Text="QUIZ" FontSize="150" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0"
+                FontSize="24" FontWeight="Light" FontFamily="Inter"
+                Grid.Column="0" Content="Create" Height="80" Width="90" Command="{Binding NavigateToCreateCommand}"/>
+        <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0"
+                FontSize="24" FontWeight="Light" FontFamily="Inter" 
+                Grid.Column="1" Content="Search" Height="80" Width="90" Command="{Binding NavigateToSearchCommand}"/>
     </Grid>
 </UserControl>
