@@ -5,6 +5,10 @@
              xmlns:viewModel="clr-namespace:Quiz.Core.ViewModels;assembly=Quiz.Core"
              xmlns:view="clr-namespace:Quiz.Views">
     <Application.Resources>
+
+        <DataTemplate DataType="{x:Type TypeName=viewModel:MainViewModel}">
+            <view:MainView/>
+        </DataTemplate>
         
         <DataTemplate DataType="{x:Type TypeName=viewModel:CreateViewModel}">
             <view:CreateView/>

@@ -16,11 +16,14 @@ namespace Quiz
             IServiceCollection services = new ServiceCollection();
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
-                DataContext = provider.GetRequiredService<MainViewModel>()
+                DataContext = provider.GetRequiredService<MainWindowViewModel>(),
             });
+            services.AddSingleton<MainWindowViewModel>();
+
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<SearchViewModel>();
             services.AddSingleton<CreateViewModel>();
+
             services.AddSingleton<INavigationService, NavigationService>();
 
             services.AddSingleton<Func<Type, ViewModel>>(serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));

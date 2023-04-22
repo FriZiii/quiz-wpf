@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Create" FontSize="100"/>
-            <Button Content="Search" Height="50" Command="{Binding NavigateToSearchViewCommand}"/>
+            <Button Content="Back" Height="50" Command="{Binding NavigateToMainViewCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

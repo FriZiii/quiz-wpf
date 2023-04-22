@@ -1,4 +1,5 @@
 ﻿using Quiz.Core.Core;
+using Quiz.Core.ViewModels;
 using System;
 
 namespace Quiz.Core.Services

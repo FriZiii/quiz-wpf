@@ -1,11 +1,9 @@
-﻿using System;
-using System.Windows.Input;
-using Quiz.Core.Core;
+﻿using Quiz.Core.Core;
 using Quiz.Core.Services;
 
 namespace Quiz.Core.ViewModels
 {
-    public class MainViewModel : ViewModel
+    public class MainViewModel :ViewModel
     {
         private INavigationService _navigation;
 
@@ -13,8 +11,8 @@ namespace Quiz.Core.ViewModels
         {
             get { return _navigation; }
             set
-            { 
-                _navigation = value; 
+            {
+                _navigation = value;
                 OnPropertyChanged();
             }
         }
@@ -25,8 +23,8 @@ namespace Quiz.Core.ViewModels
         public MainViewModel(INavigationService navigationService)
         {
             Navigation = navigationService;
-            NavigateToCreateCommand = new RelayCommand(o => { Navigation.NavigateTo<CreateViewModel>();}, o => true);
-            NavigateToSearchCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>();}, o => true);
+            NavigateToCreateCommand = new RelayCommand(o => { Navigation.NavigateTo<CreateViewModel>(); }, o => true);
+            NavigateToSearchCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
         }
     }
 }

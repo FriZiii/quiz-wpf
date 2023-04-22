@@ -5,19 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quiz"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="720" Width="1280">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <StackPanel>
-            <Button Content="Create" Height="25" Command="{Binding NavigateToCreateCommand}"/>
-            <Button Content="Search" Height="25" Command="{Binding NavigateToSearchCommand}"/>
-        </StackPanel>
-
-        <ContentControl Grid.Column="1" Content="{Binding Navigation.CurrentView}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Okno"/>
+        <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}">
             
         </ContentControl>
     </Grid>

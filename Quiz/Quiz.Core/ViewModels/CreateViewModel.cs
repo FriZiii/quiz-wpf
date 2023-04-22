@@ -16,11 +16,11 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
             }
         }
-        public RelayCommand NavigateToSearchViewCommand { get; set; }
+        public RelayCommand NavigateToMainViewCommand { get; set; }
         public CreateViewModel(INavigationService navigation)
         {
             Navigation = navigation;
-            NavigateToSearchViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>();  }, o => true);
+            NavigateToMainViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>();  }, o => true);
         }
     }
 }
