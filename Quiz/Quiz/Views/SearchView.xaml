@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Quiz.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="#320754">
+             Background="Transparent">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Search" FontSize="100"/>

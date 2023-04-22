@@ -4,12 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quiz"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
-    <Border CornerRadius="20" Background="#FFFFFF">
+    <Border CornerRadius="20" Background="#910f53">
+        
+        <behaviors:Interaction.Triggers>
+            <behaviors:EventTrigger EventName="MouseDown">
+                <behaviors:InvokeCommandAction Command="{Binding MouseDownCommand}" />
+            </behaviors:EventTrigger>
+        </behaviors:Interaction.Triggers>
+
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="65"/>
+                <RowDefinition Height="45"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
