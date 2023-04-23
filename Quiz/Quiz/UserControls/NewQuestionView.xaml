@@ -34,8 +34,8 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 10">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="300" Margin="0 0 10 0"
-                             FontSize="22" Text="{Binding answers[0].Answer}" BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding answers[0].IsCorrect}"/>
+                             FontSize="22" Text="{Binding Answers[0].Answer}" BorderThickness="0"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[0].IsCorrect}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -47,8 +47,8 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 10">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="300" Margin="0 0 10 0"
-                             FontSize="22" Text="{Binding answers[1].Answer}" BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding answers[1].IsCorrect}"/>
+                             FontSize="22" Text="{Binding Answers[1].Answer}" BorderThickness="0"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[1].IsCorrect}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -60,8 +60,8 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 10">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="300" Margin="0 0 10 0"
-                             FontSize="22" Text="{Binding answers[2].Answer}" BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding answers[2].IsCorrect}"/>
+                             FontSize="22" Text="{Binding Answers[2].Answer}" BorderThickness="0"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[2].IsCorrect}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -73,8 +73,8 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 10">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="300" Margin="0 0 10 0"
-                             FontSize="22" Text="{Binding answers[3].Answer}" BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding answers[3].IsCorrect}"/>
+                             FontSize="22" Text="{Binding Answers[3].Answer}" BorderThickness="0"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[3].IsCorrect}"/>
                 </StackPanel>
             </StackPanel>
         </Border>

@@ -10,13 +10,13 @@ namespace Quiz.Core.UserControls.ViewModels
         public int QuestionNumber { get; set; }
         public string Question { get; set; }
 
-        public ObservableCollection<AnswerModel> answers { get; set; } = new ObservableCollection<AnswerModel>();
+        public ObservableCollection<AnswerModel> Answers { get; set; } = new ObservableCollection<AnswerModel>();
 
         public NewQuestionViewModel()
         {
             for(int i = 0; i<4; i++)
             {
-                answers.Add(new AnswerModel());
+                Answers.Add(new AnswerModel());
             }
         }
     }

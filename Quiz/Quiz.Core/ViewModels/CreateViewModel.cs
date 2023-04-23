@@ -51,7 +51,7 @@ namespace Quiz.Core.ViewModels
         public void CreateQuizz()
         {
             Console.WriteLine("Saved");
-            //SQLiteDataAccess.CreateQuizz(this);
+            SQLiteDataAccess.CreateQuizz(this);
         }
     }
 }
