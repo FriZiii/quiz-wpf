@@ -1,4 +1,7 @@
 ﻿using Quiz.Core.Core;
+using Quiz.Core.Models;
+using System;
+using System.Collections.ObjectModel;
 
 namespace Quiz.Core.UserControls.ViewModels
 {
@@ -7,14 +10,14 @@ namespace Quiz.Core.UserControls.ViewModels
         public int QuestionNumber { get; set; }
         public string Question { get; set; }
 
-        public string AnswearA { get; set; }
-        public string AnswearB { get; set; }
-        public string AnswearC { get; set; }
-        public string AnswearD { get; set; }
+        public ObservableCollection<AnswerModel> answers { get; set; } = new ObservableCollection<AnswerModel>();
 
-        public bool AIsChecked { get; set; } = false;
-        public bool BIsChecked { get; set; } = false;
-        public bool CIsChecked { get; set; } = false;
-        public bool DIsChecked { get; set; } = false;
+        public NewQuestionViewModel()
+        {
+            for(int i = 0; i<4; i++)
+            {
+                answers.Add(new AnswerModel());
+            }
+        }
     }
 }

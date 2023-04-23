@@ -19,12 +19,15 @@
                 Grid.Row="0" Content="🠘" Height="30" Width="70" Command="{Binding NavigateToMainViewCommand}"
                 HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Margin="0 80 0 0">
+        <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Margin="0 65 0 0">
+            <!--Quiz Name-->
             <Border Grid.Column="0" Grid.Row="0" CornerRadius="15" Background="#54A0FF" Margin="15" Grid.ColumnSpan="2">
                 <StackPanel Orientation="Horizontal" Margin="30 5">
-                    <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Name, Mode=OneWayToSource}" FontSize="22" Width="648" VerticalAlignment="Center" BorderThickness="0"/>
+                    <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Name, Mode=OneWayToSource}" FontSize="22" Width="700" VerticalAlignment="Center" BorderThickness="0"/>
                 </StackPanel>
             </Border>
+            
+            <!--Quiz Questions-->
             <ScrollViewer VerticalScrollBarVisibility="Auto" Height="400">
                 <ItemsControl ItemsSource="{Binding NewQuestionList}">
                     <ItemsControl.ItemTemplate>
@@ -34,9 +37,17 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 0 0"
-                FontSize="12" FontWeight="Light" FontFamily="Inter"
-                Content="Add new..." Height="30" Width="70" Command="{Binding AddNewQuestionCommand}"/>
+            
+            <!--Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 10 0"
+                    FontSize="12" FontWeight="Light" FontFamily="Inter"
+                    Content="Add new..." Height="30" Width="70" Command="{Binding AddNewQuestionCommand}"/>
+                
+                <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="10 0 0 0"
+                    FontSize="12" FontWeight="Light" FontFamily="Inter"
+                    Content="Save" Height="30" Width="70" Command="{Binding CreateQuizzCommand}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
