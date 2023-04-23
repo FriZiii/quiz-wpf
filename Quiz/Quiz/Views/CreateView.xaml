@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Quiz.Views"
              xmlns:userControls="clr-namespace:Quiz.UserControls"
+             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280"
              Background="Transparent">
@@ -19,6 +20,11 @@
                 HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Margin="0 80 0 0">
+            <Border Grid.Column="0" Grid.Row="0" CornerRadius="15" Background="#54A0FF" Margin="15" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Horizontal" Margin="30 5">
+                    <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Name, Mode=OneWayToSource}" FontSize="22" Width="648" VerticalAlignment="Center" BorderThickness="0"/>
+                </StackPanel>
+            </Border>
             <ScrollViewer VerticalScrollBarVisibility="Auto" Height="400">
                 <ItemsControl ItemsSource="{Binding NewQuestionList}">
                     <ItemsControl.ItemTemplate>
