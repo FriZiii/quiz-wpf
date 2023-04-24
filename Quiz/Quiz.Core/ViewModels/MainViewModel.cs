@@ -24,7 +24,7 @@ namespace Quiz.Core.ViewModels
         {
             Navigation = navigationService;
             NavigateToCreateCommand = new RelayCommand(o => { Navigation.NavigateTo<CreateViewModel>(); }, o => true);
-            NavigateToSearchCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
+            NavigateToSearchCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); SearchViewModel.SearchQuizzes(); }, o => true);
         }
     }
 }

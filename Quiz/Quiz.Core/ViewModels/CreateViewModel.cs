@@ -24,7 +24,7 @@ namespace Quiz.Core.ViewModels
         public RelayCommand AddNewQuestionCommand { get; set; }
         public RelayCommand CreateQuizzCommand { get; set; }
         public ObservableCollection<NewQuestionViewModel> NewQuestionList { get; set; } = new ObservableCollection<NewQuestionViewModel>();
-        public string Name { get; set; } = "Title";
+        public string Name { get; set; }
 
         //Constructor
         public CreateViewModel(INavigationService navigation)
@@ -52,6 +52,14 @@ namespace Quiz.Core.ViewModels
         {
             Console.WriteLine("Saved");
             SQLiteDataAccess.CreateQuizz(this);
+            ClearCreator();
+        }
+
+        public void ClearCreator()
+        {
+            Name = string.Empty;
+            NewQuestionList.Clear();
+            AddNewQuestion();
         }
     }
 }

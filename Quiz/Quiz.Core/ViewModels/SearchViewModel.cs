@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace Quiz.Core.ViewModels
 {
-    public class SearchViewModel :ViewModel
+    public class SearchViewModel : ViewModel
     {
         private INavigationService _navigation;
         public INavigationService Navigation
@@ -20,17 +20,17 @@ namespace Quiz.Core.ViewModels
             }
         }
 
-        public ObservableCollection<FoundSingleQuizViewModel> FoundedQuizzes { get; set; } = new ObservableCollection<FoundSingleQuizViewModel>();
+        public static ObservableCollection<FoundSingleQuizViewModel> FoundedQuizzes { get; set; } = new ObservableCollection<FoundSingleQuizViewModel>();
         public RelayCommand NavigateToMainViewCommand { get; set; }
         public SearchViewModel(INavigationService navigation)
         {
             Navigation = navigation;
-            SearchQuizzes();
             NavigateToMainViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>(); }, o => true);
         }
 
-        public void SearchQuizzes()
+        public static void SearchQuizzes()
         {
+            FoundedQuizzes.Clear();
             foreach (var quiz in SQLiteDataAccess.GetQuizz())
             {
                 FoundedQuizzes.Add(quiz);
