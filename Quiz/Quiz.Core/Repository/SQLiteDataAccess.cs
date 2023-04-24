@@ -1,9 +1,9 @@
-﻿using Quiz.Core.ViewModels;
+﻿using Quiz.Core.UserControls.ViewModels;
+using Quiz.Core.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
-using System.Linq;
-using System.Xml.Linq;
 
 namespace Quiz.Core.Repository
 {
@@ -55,6 +55,35 @@ namespace Quiz.Core.Repository
                 }
                 connection.Close();
             }
+        }
+
+        public static List<FoundSingleQuizViewModel> GetQuizz()
+        {
+            List<FoundSingleQuizViewModel> quizzesFound = new List<FoundSingleQuizViewModel>();
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Open();
+
+                string selectQuizzesSql = "SELECT ID, Name FROM Quizzes;";
+                var selectQuizzesCommand = new SQLiteCommand(selectQuizzesSql, connection);
+
+                using (var reader = selectQuizzesCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int quizId = reader.GetInt32(0);
+                        string quizName = reader.GetString(1);
+                        var quizInfo = new FoundSingleQuizViewModel()
+                        {
+                            ID = quizId,
+                            QuizName = quizName,
+                        };
+                        quizzesFound.Add(quizInfo);
+                    }
+                }
+                connection.Close();
+            }
+            return quizzesFound;
         }
 
         private static string LoadConnectionString(string id = "Default")
