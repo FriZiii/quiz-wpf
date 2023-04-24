@@ -8,11 +8,12 @@ namespace Quiz.Core.Services
         ViewModel CurrentView { get; }
         void NavigateTo<T>() where T : ViewModel;
     }
+
     public class NavigationService : ObservableObject, INavigationService
     {
+        //Properties
         private ViewModel _currentView;
         private readonly Func<Type, ViewModel> _viewModelFactory;
-
         public ViewModel CurrentView
         {
             get => _currentView;
@@ -23,11 +24,13 @@ namespace Quiz.Core.Services
             }
         }
 
+        //Constructor
         public NavigationService(Func<Type, ViewModel> viewModelFactory)
         {
             _viewModelFactory = viewModelFactory;
         }
 
+        //Methods
         public void NavigateTo<TViewModel>() where TViewModel : ViewModel
         {
             ViewModel viewModel = _viewModelFactory.Invoke(typeof(TViewModel));

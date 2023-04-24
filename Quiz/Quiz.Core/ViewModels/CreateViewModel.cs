@@ -10,6 +10,8 @@ namespace Quiz.Core.ViewModels
     public class CreateViewModel : ViewModel
     {
         //Properties
+        public ObservableCollection<NewQuestionViewModel> NewQuestionList { get; set; } = new ObservableCollection<NewQuestionViewModel>();
+
         private INavigationService _navigation;
         public INavigationService Navigation
         {
@@ -20,11 +22,24 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //Commands
         public RelayCommand NavigateToMainViewCommand { get; set; }
         public RelayCommand AddNewQuestionCommand { get; set; }
         public RelayCommand CreateQuizzCommand { get; set; }
-        public ObservableCollection<NewQuestionViewModel> NewQuestionList { get; set; } = new ObservableCollection<NewQuestionViewModel>();
-        public string Name { get; set; }
+
+
 
         //Constructor
         public CreateViewModel(INavigationService navigation)
@@ -35,7 +50,7 @@ namespace Quiz.Core.ViewModels
 
             NavigateToMainViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>();  }, o => true);
             AddNewQuestionCommand = new RelayCommand(o => AddNewQuestion(), o => true);
-            CreateQuizzCommand = new RelayCommand(o=>CreateQuizz(), o => true);
+            CreateQuizzCommand = new RelayCommand(o => CreateQuizz(), o => true);
         }
         
         //Methods

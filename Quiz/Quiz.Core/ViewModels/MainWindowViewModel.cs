@@ -6,8 +6,8 @@ namespace Quiz.Core.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
+        //Properties
         private INavigationService _navigation;
-
         public INavigationService Navigation
         {
             get { return _navigation; }
@@ -17,10 +17,13 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        //Commands
         public RelayCommand CloseAppCommand { get; set; }
         public RelayCommand MinimalizeAppCommand { get; set; }
         public RelayCommand MouseDownCommand { get; set; }
 
+        //Constructor
         public MainWindowViewModel(INavigationService navigationService)
         {
             Navigation = navigationService;

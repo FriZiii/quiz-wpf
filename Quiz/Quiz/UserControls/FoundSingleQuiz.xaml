@@ -12,7 +12,7 @@
                        FontSize="42" Foreground="#ffffff"/>
             <Button Style="{DynamicResource ButtonStyle}" Background="#ffffff" Foreground="#54A0FF" BorderThickness="0" Margin="10 0 0 0"
                     FontSize="28" FontWeight="Light" FontFamily="Inter"
-                    Content="PLAY" Height="52" Width="90"
+                    Content="PLAY" Height="52" Width="90" Command="{Binding PlayQuizzCommand}"
                     HorizontalAlignment="Right"/>
         </Grid>
     </Border>

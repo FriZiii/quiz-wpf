@@ -23,7 +23,7 @@
             <!--Quiz Name-->
             <Border Grid.Column="0" Grid.Row="0" CornerRadius="15" Background="#54A0FF" Margin="15" Grid.ColumnSpan="2">
                 <StackPanel Orientation="Horizontal" Margin="30 5">
-                    <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Name, Mode=OneWayToSource}" FontSize="22" Width="700" VerticalAlignment="Center" BorderThickness="0"/>
+                    <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Name, Mode=TwoWay}" FontSize="22" Width="700" VerticalAlignment="Center" BorderThickness="0"/>
                 </StackPanel>
             </Border>
             

@@ -5,8 +5,8 @@ namespace Quiz.Core.ViewModels
 {
     public class MainViewModel :ViewModel
     {
+        //Properties
         private INavigationService _navigation;
-
         public INavigationService Navigation
         {
             get { return _navigation; }
@@ -17,9 +17,11 @@ namespace Quiz.Core.ViewModels
             }
         }
 
+        //Commands
         public RelayCommand NavigateToCreateCommand { get; set; }
         public RelayCommand NavigateToSearchCommand { get; set; }
 
+        //Constructor
         public MainViewModel(INavigationService navigationService)
         {
             Navigation = navigationService;
