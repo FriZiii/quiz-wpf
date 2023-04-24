@@ -36,10 +36,7 @@ namespace Quiz.Core.ViewModels
         public static void SearchQuizzes()
         {
             FoundedQuizzes.Clear();
-            foreach (var quiz in SQLiteDataAccess.GetQuizz())
-            {
-                FoundedQuizzes.Add(quiz);
-            }
+            SQLiteDataAccess.GetQuizz().ForEach(x => FoundedQuizzes.Add(x));
         }
     }
 }

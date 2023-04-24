@@ -57,6 +57,34 @@ namespace Quiz.Core.Repository
             }
         }
 
+        public static void RemoveQuiz(int quizId)
+        {
+            using(var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Open();
+
+                using (var command = new SQLiteCommand("DELETE FROM Answers WHERE QuestionID IN (SELECT ID FROM Questions WHERE QuizID = @quizId)", connection))
+                {
+                    command.Parameters.AddWithValue("@quizId", quizId);
+                    command.ExecuteNonQuery();
+                }
+
+                using (var command = new SQLiteCommand("DELETE FROM Questions WHERE QuizID = @quizId", connection))
+                {
+                    command.Parameters.AddWithValue("@quizId", quizId);
+                    command.ExecuteNonQuery();
+                }
+
+                using (var command = new SQLiteCommand("DELETE FROM Quizzes WHERE ID = @quizId", connection))
+                {
+                    command.Parameters.AddWithValue("@quizId", quizId);
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
         public static List<FoundSingleQuizViewModel> GetQuizz()
         {
             List<FoundSingleQuizViewModel> quizzesFound = new List<FoundSingleQuizViewModel>();
