@@ -7,13 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="800">
     <Border Background="#54A0FF" CornerRadius="15" Height="100" Width="400">
-        <Grid Margin="50 20">
+        <Grid Margin="20 10">
             <TextBlock Text="{Binding QuizName}" VerticalAlignment="Center" HorizontalAlignment="Left"
                        FontSize="42" Foreground="#ffffff"/>
-            <Button Style="{DynamicResource ButtonStyle}" Background="#ffffff" Foreground="#54A0FF" BorderThickness="0" Margin="10 0 0 0"
+            <StackPanel HorizontalAlignment="Right">
+                <Button Style="{DynamicResource ButtonStyle}" Background="#ffffff" Foreground="#54A0FF" BorderThickness="0" Margin="10 0 0 0"
+                    FontSize="28" FontWeight="Normal" FontFamily="Inter"
+                    Content="PLAY" Height="36" Width="90" Command="{Binding PlayQuizzCommand}"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Button Style="{DynamicResource ButtonStyle}" Background="#ffffff" Foreground="#54A0FF" BorderThickness="0" Margin="10 0 0 0"
                     FontSize="28" FontWeight="Light" FontFamily="Inter"
-                    Content="PLAY" Height="52" Width="90" Command="{Binding PlayQuizzCommand}"
-                    HorizontalAlignment="Right"/>
+                    Content="E" Height="36" Width="40" Command="{Binding EditQuizzCommand}"/>
+                    
+                    <Button Style="{DynamicResource ButtonStyle}" Background="#ffffff" Foreground="#54A0FF" BorderThickness="0" Margin="10 0 0 0"
+                    FontSize="28" FontWeight="Light" FontFamily="Inter"
+                    Content="X" Height="36" Width="40" Command="{Binding RemoveQuizzCommand}"/>
+                </StackPanel>
+
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>
