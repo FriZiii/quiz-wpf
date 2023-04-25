@@ -25,7 +25,11 @@
             <DataTemplate DataType="{x:Type TypeName=viewModel:SearchViewModel}">
                 <view:SearchView/>
             </DataTemplate>
-        
+
+            <DataTemplate DataType="{x:Type TypeName=viewModel:AnswearingViewModel}">
+                <view:AnswearingView/>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

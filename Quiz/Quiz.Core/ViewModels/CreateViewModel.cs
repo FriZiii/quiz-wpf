@@ -1,5 +1,4 @@
-﻿using System;
-using Quiz.Core.Core;
+﻿using Quiz.Core.Core;
 using Quiz.Core.Repository;
 using Quiz.Core.Services;
 using Quiz.Core.UserControls.ViewModels;

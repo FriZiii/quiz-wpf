@@ -2,6 +2,7 @@
 using Quiz.Core.Repository;
 using Quiz.Core.Services;
 using Quiz.Core.UserControls.ViewModels;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Quiz.Core.ViewModels
@@ -33,7 +34,16 @@ namespace Quiz.Core.ViewModels
         {
             Navigation = navigation;
             NavigateToMainViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>(); }, o => true);
+
+            FoundSingleQuizViewModel.StartQuizEvent += MoveToQuiz;
         }
+
+        private void MoveToQuiz(int quizID)
+        {
+            Console.WriteLine(quizID);
+            Navigation.NavigateTo<AnswearingViewModel>();
+        }
+
 
         //Methods
         public static void SearchQuizzes()

@@ -2,6 +2,7 @@
 using Quiz.Core.Core;
 using Quiz.Core.Models;
 using Quiz.Core.Repository;
+using Quiz.Core.Services;
 using Quiz.Core.ViewModels;
 
 namespace Quiz.Core.UserControls.ViewModels
@@ -16,11 +17,31 @@ namespace Quiz.Core.UserControls.ViewModels
         public RelayCommand RemoveQuizzCommand { get; set; }
         public RelayCommand EditQuizzCommand { get; set; }
 
+        public static event Action<int> StartQuizEvent;
+
         //Constructor
         public FoundSingleQuizViewModel()
         {
-            PlayQuizzCommand = new RelayCommand(o => PlayQuiz(), o => true);
-            RemoveQuizzCommand = new RelayCommand(o => { SQLiteDataAccess.RemoveQuiz(FoundSingleQuizModel.ID); SearchViewModel.FoundedQuizzes.Remove(this); }, o => true) ;
+            PlayQuizzCommand = new RelayCommand(o =>
+            {
+                if (FoundSingleQuizModel != null)
+                {
+                    StartQuizEvent?.Invoke(FoundSingleQuizModel.ID);
+                }
+            },
+            o => true
+            );
+            RemoveQuizzCommand = new RelayCommand(o =>
+            {
+                if (FoundSingleQuizModel != null)
+                {
+                    SQLiteDataAccess.RemoveQuiz(FoundSingleQuizModel.ID);
+                    SearchViewModel.FoundedQuizzes.Remove(this);
+                }
+            },
+            o => true
+            );
+
             EditQuizzCommand = new RelayCommand(o => Console.Write("Edit..."), o => true);
         }
 
