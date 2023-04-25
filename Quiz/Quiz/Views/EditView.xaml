@@ -24,6 +24,14 @@
                 Grid.Row="0" Content="🠘" Height="30" Width="70" Command="{Binding NavigateToSearchViewCommand}"
                 HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
+        <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="740" CornerRadius="15" Background="#54A0FF">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding QuizName}" FontSize="38" 
+                             Width="700" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#ffffff" Padding="5"/>
+            </StackPanel>
+        </Border>
+        
         <!--Question-->
         <Border Grid.Column="1" Grid.Row="1" CornerRadius="15" Background="#54A0FF" Margin="15 15" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" Margin="10 5" HorizontalAlignment="Center">
@@ -111,7 +119,7 @@
                         <DataTemplate>
                             <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 5"
                                 FontSize="22" FontWeight="Light" FontFamily="Inter"
-                                Content="Question" Height="40" Width="170"/>
+                                Content="x" Height="40" Width="170"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

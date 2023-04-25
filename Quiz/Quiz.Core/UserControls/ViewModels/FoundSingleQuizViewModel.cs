@@ -18,7 +18,7 @@ namespace Quiz.Core.UserControls.ViewModels
         public RelayCommand EditQuizzCommand { get; set; }
 
         public static event Action<int> StartQuizEvent;
-        public static event Action<int> EditQuizEvent;
+        public static event Action<int, string> EditQuizEvent;
         //Constructor
         public FoundSingleQuizViewModel()
         {
@@ -45,7 +45,7 @@ namespace Quiz.Core.UserControls.ViewModels
 
             EditQuizzCommand = new RelayCommand(o =>
             {
-                EditQuizEvent?.Invoke(FoundSingleQuizModel.ID );
+                EditQuizEvent?.Invoke(FoundSingleQuizModel.ID, FoundSingleQuizModel.QuizName);
             },
             o => true
             );

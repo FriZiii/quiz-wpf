@@ -18,16 +18,17 @@
                 Grid.Row="0" Content="🠘" Height="30" Width="70" Command="{Binding NavigateToMainViewCommand}"
                 HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <!--Quiz Name-->
         <StackPanel Grid.Row="1" Margin="0 0 0 70">
 
+            <!--Quiz Name-->
             <Border Grid.Column="0" Grid.Row="0" CornerRadius="15" Background="#54A0FF" Margin="15" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="900">
                 <StackPanel Orientation="Horizontal" Margin="25 5">
-                    <TextBlock Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" FontSize="28" 
+                    <TextBlock Text="{Binding Title}" FontSize="28" 
                              Width="850" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#ffffff"/>
                 </StackPanel>
             </Border>
 
+            <!--Content-->
             <ScrollViewer VerticalScrollBarVisibility="Auto" Height="485" Width="900">
                 <ItemsControl ItemsSource="{Binding FoundedQuizzes}">
                     <ItemsControl.ItemsPanel>

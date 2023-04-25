@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Quiz.Core.Core;
+using Quiz.Core.Models;
+using Quiz.Core.Repository;
 using Quiz.Core.Services;
 
 namespace Quiz.Core.ViewModels
@@ -19,7 +21,8 @@ namespace Quiz.Core.ViewModels
             }
         }
         public static int ID { get; set; }
-        public ObservableCollection<int> QuestionsList { get; set; } = new ObservableCollection<int>();
+        public static string QuizName { get; set; }
+        public ObservableCollection<QuestionModel> QuestionsList { get; set; } = new ObservableCollection<QuestionModel>();
 
         //Commands
         public RelayCommand NavigateToSearchViewCommand { get; set; }
@@ -33,10 +36,12 @@ namespace Quiz.Core.ViewModels
             NavigateToSearchViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
             SaveChangesCommand = new RelayCommand(o => { Console.WriteLine("SAVE"); }, o => true);
             DiscardChangesCommand = new RelayCommand(o => { Console.WriteLine("DISCARD"); }, o => true);
-            for(int i = 0; i< 40; i++)
-            {
-                QuestionsList.Add(i);
-            }
+            ReadQuestions();
+        }
+
+        public void ReadQuestions()
+        {
+            SQLiteDataAccess.GetQuestions(ID).ForEach(x => QuestionsList.Add(x));
         }
     }
 }

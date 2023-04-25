@@ -24,7 +24,6 @@ namespace Quiz.Core.ViewModels
 
         public static string? Title { get; set; } 
 
-
         //Commands
         public RelayCommand NavigateToMainViewCommand { get; set; }
 
@@ -53,9 +52,10 @@ namespace Quiz.Core.ViewModels
                 Title = "Quizzes found in the database";
         }
 
-        private void EditQuiz(int quizID)
+        private void EditQuiz(int quizID, string quizName)
         {
             EditViewModel.ID = quizID;
+            EditViewModel.QuizName = quizName;
             Navigation.NavigateTo<EditViewModel>();
         }
 
