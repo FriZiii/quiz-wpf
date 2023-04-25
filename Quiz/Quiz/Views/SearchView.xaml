@@ -18,19 +18,31 @@
                 Grid.Row="0" Content="🠘" Height="30" Width="70" Command="{Binding NavigateToMainViewCommand}"
                 HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="485" Grid.Row="1" Width="900" Margin="0 0 0 70">
-            <ItemsControl ItemsSource="{Binding FoundedQuizzes}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <userControls:FoundSingleQuiz Margin="10"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <!--Quiz Name-->
+        <StackPanel Grid.Row="1" Margin="0 0 0 70">
+
+            <Border Grid.Column="0" Grid.Row="0" CornerRadius="15" Background="#54A0FF" Margin="15" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="900">
+                <StackPanel Orientation="Horizontal" Margin="25 5">
+                    <TextBlock Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" FontSize="28" 
+                             Width="850" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#ffffff"/>
+                </StackPanel>
+            </Border>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="485" Width="900">
+                <ItemsControl ItemsSource="{Binding FoundedQuizzes}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <userControls:FoundSingleQuiz Margin="10"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

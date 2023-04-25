@@ -22,6 +22,9 @@ namespace Quiz.Core.ViewModels
             }
         }
 
+        public static string? Title { get; set; } 
+
+
         //Commands
         public RelayCommand NavigateToMainViewCommand { get; set; }
 
@@ -37,6 +40,11 @@ namespace Quiz.Core.ViewModels
         {
             FoundedQuizzes.Clear();
             SQLiteDataAccess.GetQuizz().ForEach(x => FoundedQuizzes.Add(x));
+
+            if (FoundedQuizzes.Count == 0)
+                Title = "There are no quizzes in the database!";
+            else
+                Title = "Quizzes found in the database";
         }
     }
 }
