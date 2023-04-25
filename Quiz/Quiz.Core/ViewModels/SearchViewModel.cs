@@ -39,7 +39,10 @@ namespace Quiz.Core.ViewModels
         public static void SearchQuizzes()
         {
             FoundedQuizzes.Clear();
-            SQLiteDataAccess.GetQuizz().ForEach(x => FoundedQuizzes.Add(x));
+            SQLiteDataAccess.GetQuizz().ForEach(x => FoundedQuizzes.Add(new FoundSingleQuizViewModel
+            {
+                FoundSingleQuizModel = x,
+            }));
 
             if (FoundedQuizzes.Count == 0)
                 Title = "There are no quizzes in the database!";

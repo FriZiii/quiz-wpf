@@ -1,5 +1,6 @@
 ﻿using System;
 using Quiz.Core.Core;
+using Quiz.Core.Models;
 using Quiz.Core.Repository;
 using Quiz.Core.ViewModels;
 
@@ -8,8 +9,7 @@ namespace Quiz.Core.UserControls.ViewModels
     public class FoundSingleQuizViewModel: ViewModel
     {
         //Properties
-        public int ID { get; set; }
-        public string QuizName { get; set; }
+        public FoundSingleQuizModel FoundSingleQuizModel { get; set; }
 
         //Commands
         public RelayCommand PlayQuizzCommand { get; set; }
@@ -20,14 +20,14 @@ namespace Quiz.Core.UserControls.ViewModels
         public FoundSingleQuizViewModel()
         {
             PlayQuizzCommand = new RelayCommand(o => PlayQuiz(), o => true);
-            RemoveQuizzCommand = new RelayCommand(o => { SQLiteDataAccess.RemoveQuiz(ID); SearchViewModel.FoundedQuizzes.Remove(this); }, o => true) ;
+            RemoveQuizzCommand = new RelayCommand(o => { SQLiteDataAccess.RemoveQuiz(FoundSingleQuizModel.ID); SearchViewModel.FoundedQuizzes.Remove(this); }, o => true) ;
             EditQuizzCommand = new RelayCommand(o => Console.Write("Edit..."), o => true);
         }
 
         //Methods
         public void PlayQuiz()
         {
-            Console.WriteLine($"{QuizName} started...");
+            Console.WriteLine($"{FoundSingleQuizModel.QuizName} started...");
         }
     }
 }

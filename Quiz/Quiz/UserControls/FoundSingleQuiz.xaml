@@ -8,7 +8,7 @@
              d:DesignHeight="150" d:DesignWidth="800">
     <Border Background="#54A0FF" CornerRadius="15" Height="100" Width="400">
         <Grid Margin="20 10">
-            <TextBlock Text="{Binding QuizName}" VerticalAlignment="Center" HorizontalAlignment="Left"
+            <TextBlock Text="{Binding FoundSingleQuizModel.QuizName}" VerticalAlignment="Center" HorizontalAlignment="Left"
                        FontSize="42" Foreground="#ffffff" MaxWidth="250" TextTrimming="CharacterEllipsis" />
             <StackPanel HorizontalAlignment="Right">
                 <Button Style="{DynamicResource ButtonStyle}" Background="#ffffff" Foreground="#54A0FF" BorderThickness="0" Margin="10 0 0 0"

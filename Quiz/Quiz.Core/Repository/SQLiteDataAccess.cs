@@ -1,4 +1,5 @@
-﻿using Quiz.Core.UserControls.ViewModels;
+﻿using Quiz.Core.Models;
+using Quiz.Core.UserControls.ViewModels;
 using Quiz.Core.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -85,9 +86,9 @@ namespace Quiz.Core.Repository
             }
         }
 
-        public static List<FoundSingleQuizViewModel> GetQuizz()
+        public static List<FoundSingleQuizModel> GetQuizz()
         {
-            List<FoundSingleQuizViewModel> quizzesFound = new List<FoundSingleQuizViewModel>();
+            List<FoundSingleQuizModel> quizzesFound = new List<FoundSingleQuizModel>();
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Open();
@@ -101,7 +102,7 @@ namespace Quiz.Core.Repository
                     {
                         int quizId = reader.GetInt32(0);
                         string quizName = reader.GetString(1);
-                        var quizInfo = new FoundSingleQuizViewModel()
+                        var quizInfo = new FoundSingleQuizModel()
                         {
                             ID = quizId,
                             QuizName = quizName,
