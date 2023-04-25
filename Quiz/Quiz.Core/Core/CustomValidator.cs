@@ -14,9 +14,7 @@ namespace Quiz.Core.Core
 
             if (!isValid)
             {
-                var errorMessages = validationResults.Select(x => x.ErrorMessage);
-
-                errorMessage = string.Join(" ", errorMessages);
+                errorMessage = validationResults.Select(x => x.ErrorMessage).FirstOrDefault();
                 return false;
             }
 
@@ -35,9 +33,7 @@ namespace Quiz.Core.Core
 
             if (!isValid)
             {
-                var errorMessages = validationResults.Select(x => x.ErrorMessage).ToList();
-
-                errorMessage = string.Join(", ", errorMessages);
+                errorMessage = validationResults.Select(x => x.ErrorMessage).FirstOrDefault();
                 return false;
             }
 
