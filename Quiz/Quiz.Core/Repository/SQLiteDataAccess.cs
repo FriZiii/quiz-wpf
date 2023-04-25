@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Reflection.PortableExecutable;
 
 namespace Quiz.Core.Repository
 {
@@ -113,6 +114,50 @@ namespace Quiz.Core.Repository
                 connection.Close();
             }
             return quizzesFound;
+        }
+
+        public static List<QuestionModel> GetQuestions(int quizID)
+        {
+            List<QuestionModel> questions = new List<QuestionModel>();
+            using(var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Open();
+
+                string selectQuestions = "SELECT ID, Text FROM Questions Where QuizID = @quizID";
+                SQLiteCommand selectQuestionsCommand = new SQLiteCommand(selectQuestions, connection);
+                selectQuestionsCommand.Parameters.AddWithValue("@quizID", quizID);
+
+                SQLiteDataReader reader = selectQuestionsCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    questions.Add(new QuestionModel()
+                    {
+                        ID = reader.GetInt32(0),
+                        Question = reader.GetString(1),
+                        Answers = new List<AnswerModel>(),
+                    });
+                }
+                reader.Close();
+
+                foreach(var question in questions)
+                {
+                    int questionId = question.ID;
+                    string selectAnswers = "SELECT Text, IsCorrect FROM Answers Where QuestionID = @questionID";
+                    SQLiteCommand selectAnswersCommand = new SQLiteCommand(selectAnswers, connection);
+                    selectAnswersCommand.Parameters.AddWithValue("@questionID", questionId);
+
+                    SQLiteDataReader answerReader = selectAnswersCommand.ExecuteReader();
+                    while (answerReader.Read())
+                    {
+                        question.Answers.Add(new AnswerModel()
+                        {
+                            Answer = answerReader.GetString(0),
+                            IsCorrect = answerReader.GetBoolean(1),
+                        });
+                    }
+                }
+            }
+            return questions;
         }
 
         private static string LoadConnectionString(string id = "Default")
