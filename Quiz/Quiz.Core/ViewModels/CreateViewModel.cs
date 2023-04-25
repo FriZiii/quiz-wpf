@@ -1,9 +1,10 @@
-﻿using Quiz.Core.Core;
+﻿using System;
+using Quiz.Core.Core;
 using Quiz.Core.Repository;
 using Quiz.Core.Services;
 using Quiz.Core.UserControls.ViewModels;
-using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Quiz.Core.ViewModels
 {
@@ -23,22 +24,31 @@ namespace Quiz.Core.ViewModels
             }
         }
 
-        private string _name;
-        public string Name
+        private string? _name;
+        [Required(ErrorMessage = "Must not be empty.")]
+        [RegularExpression("^[^\\d\\s].*", ErrorMessage = "Name cannot start with a number")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must be at least 3 characters")]
+        public string? Name
         {
             get => _name;
             set
             {
                 _name = value;
                 OnPropertyChanged();
+                if (value == null) return;
+                CustomValidator.TryValidateProperty(value, nameof(Name), out var errorMessage, this);
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    throw new ValidationException(errorMessage);
+                }
             }
         }
+
 
         //Commands
         public RelayCommand NavigateToMainViewCommand { get; set; }
         public RelayCommand AddNewQuestionCommand { get; set; }
         public RelayCommand CreateQuizzCommand { get; set; }
-
 
 
         //Constructor
@@ -50,7 +60,8 @@ namespace Quiz.Core.ViewModels
 
             NavigateToMainViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>();  }, o => true);
             AddNewQuestionCommand = new RelayCommand(o => AddNewQuestion(), o => true);
-            CreateQuizzCommand = new RelayCommand(o => CreateQuizz(), o => true);
+            CreateQuizzCommand = new RelayCommand(o => CreateQuizz(), o => IsValid());
+
         }
         
         //Methods
@@ -65,16 +76,34 @@ namespace Quiz.Core.ViewModels
 
         public void CreateQuizz()
         {
-            Console.WriteLine("Saved");
             SQLiteDataAccess.CreateQuizz(this);
             ClearCreator();
         }
 
         public void ClearCreator()
         {
-            Name = string.Empty;
+            Name = null;
             NewQuestionList.Clear();
             AddNewQuestion();
+        }
+
+        public bool IsValid()
+        {
+            CustomValidator.TryValidateObject(this, out var errorMessage);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                return false;
+            }
+
+            foreach (var question in NewQuestionList)
+            {
+                CustomValidator.TryValidateObject(question, out errorMessage);
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
