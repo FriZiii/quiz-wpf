@@ -29,7 +29,11 @@
             <DataTemplate DataType="{x:Type TypeName=viewModel:AnswearingViewModel}">
                 <view:AnswearingView/>
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type TypeName=viewModel:EditViewModel}">
+                <view:EditView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

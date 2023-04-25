@@ -3,9 +3,9 @@ using Quiz.Core.Services;
 
 namespace Quiz.Core.ViewModels
 {
-    public class AnswearingViewModel : ViewModel
+    public class EditViewModel : ViewModel
     {
-
+        //Properties
         private INavigationService _navigation;
         public INavigationService Navigation
         {
@@ -16,10 +16,14 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
             }
         }
+        public RelayCommand NavigateToSearchViewCommand { get; set; }
+        public static int ID { get; set; }
 
-        public AnswearingViewModel(INavigationService navigation)
+        //Constructor
+        public EditViewModel(INavigationService navigation)
         {
             Navigation = navigation;
+            NavigateToSearchViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
         }
     }
 }

@@ -11,7 +11,6 @@ namespace Quiz.Core.ViewModels
     {
         //Properties
         public static ObservableCollection<FoundSingleQuizViewModel> FoundedQuizzes { get; set; } = new ObservableCollection<FoundSingleQuizViewModel>();
-
         private INavigationService _navigation;
         public INavigationService Navigation
         {
@@ -36,14 +35,8 @@ namespace Quiz.Core.ViewModels
             NavigateToMainViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>(); }, o => true);
 
             FoundSingleQuizViewModel.StartQuizEvent += MoveToQuiz;
+            FoundSingleQuizViewModel.EditQuizEvent += EditQuiz;
         }
-
-        private void MoveToQuiz(int quizID)
-        {
-            Console.WriteLine(quizID);
-            Navigation.NavigateTo<AnswearingViewModel>();
-        }
-
 
         //Methods
         public static void SearchQuizzes()
@@ -58,6 +51,17 @@ namespace Quiz.Core.ViewModels
                 Title = "There are no quizzes in the database!";
             else
                 Title = "Quizzes found in the database";
+        }
+
+        private void EditQuiz(int quizID)
+        {
+            EditViewModel.ID = quizID;
+            Navigation.NavigateTo<EditViewModel>();
+        }
+
+        private void MoveToQuiz(int quizID)
+        {
+            Navigation.NavigateTo<AnswearingViewModel>();
         }
     }
 }
