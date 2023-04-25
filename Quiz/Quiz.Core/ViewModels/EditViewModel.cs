@@ -1,4 +1,6 @@
-﻿using Quiz.Core.Core;
+﻿using System;
+using System.Collections.ObjectModel;
+using Quiz.Core.Core;
 using Quiz.Core.Services;
 
 namespace Quiz.Core.ViewModels
@@ -16,14 +18,25 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
             }
         }
-        public RelayCommand NavigateToSearchViewCommand { get; set; }
         public static int ID { get; set; }
+        public ObservableCollection<int> QuestionsList { get; set; } = new ObservableCollection<int>();
+
+        //Commands
+        public RelayCommand NavigateToSearchViewCommand { get; set; }
+        public RelayCommand SaveChangesCommand { get; set; }
+        public RelayCommand DiscardChangesCommand { get; set; }
 
         //Constructor
         public EditViewModel(INavigationService navigation)
         {
             Navigation = navigation;
             NavigateToSearchViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
+            SaveChangesCommand = new RelayCommand(o => { Console.WriteLine("SAVE"); }, o => true);
+            DiscardChangesCommand = new RelayCommand(o => { Console.WriteLine("DISCARD"); }, o => true);
+            for(int i = 0; i< 40; i++)
+            {
+                QuestionsList.Add(i);
+            }
         }
     }
 }
