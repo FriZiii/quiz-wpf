@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Quiz.Core.Core
 {
@@ -13,11 +14,8 @@ namespace Quiz.Core.Core
 
             if (!isValid)
             {
-                var errorMessages = new List<string>();
-                foreach (var validationResult in validationResults)
-                {
-                    errorMessages.Add(validationResult.ErrorMessage);
-                }
+                var errorMessages = validationResults.Select(x => x.ErrorMessage);
+
                 errorMessage = string.Join(" ", errorMessages);
                 return false;
             }
@@ -37,12 +35,9 @@ namespace Quiz.Core.Core
 
             if (!isValid)
             {
-                var errorMessages = new List<string>();
-                foreach (var validationResult in validationResults)
-                {
-                    errorMessages.Add(validationResult.ErrorMessage);
-                }
-                errorMessage = string.Join(" ", errorMessages);
+                var errorMessages = validationResults.Select(x => x.ErrorMessage).ToList();
+
+                errorMessage = string.Join(", ", errorMessages);
                 return false;
             }
 
