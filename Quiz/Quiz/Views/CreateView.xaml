@@ -20,10 +20,13 @@
                 HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Margin="0 65 0 0">
+            
             <!--Quiz Name-->
             <Border Grid.Column="0" Grid.Row="0" CornerRadius="15" Background="#54A0FF" Margin="15" Grid.ColumnSpan="2">
-                <StackPanel Orientation="Horizontal" Margin="30 5">
-                    <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Name, Mode=TwoWay}" FontSize="22" Width="700" VerticalAlignment="Center" BorderThickness="0"/>
+                <StackPanel Orientation="Horizontal" Margin="25 5">
+                    <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Name, Mode=TwoWay, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource errorTemplate}" FontSize="26" 
+                             Width="700" VerticalAlignment="Center" BorderThickness="0" TextAlignment="Center"/>
                 </StackPanel>
             </Border>
             

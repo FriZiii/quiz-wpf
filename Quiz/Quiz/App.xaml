@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Styles/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="Styles/TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/TopBarButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ErrorTamplateStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type TypeName=viewModel:MainViewModel}">
