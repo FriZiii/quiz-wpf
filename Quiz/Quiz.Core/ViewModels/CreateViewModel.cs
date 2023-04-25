@@ -97,6 +97,14 @@ namespace Quiz.Core.ViewModels
 
             foreach (var question in NewQuestionList)
             {
+                foreach(var answer in question.Answers)
+                {
+                    CustomValidator.TryValidateObject(answer, out errorMessage);
+                    if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        return false;
+                    }
+                }
                 CustomValidator.TryValidateObject(question, out errorMessage);
                 if (!string.IsNullOrEmpty(errorMessage))
                 {

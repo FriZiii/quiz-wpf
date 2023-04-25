@@ -1,9 +1,5 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Quiz.Core.Core
 {
@@ -12,12 +8,12 @@ namespace Quiz.Core.Core
         public static bool TryValidateObject<T>(T obj, out string errorMessage)
         {
             var validationContext = new ValidationContext(obj);
-            var validationResults = new System.Collections.Generic.List<ValidationResult>();
+            var validationResults = new List<ValidationResult>();
             var isValid = Validator.TryValidateObject(obj, validationContext, validationResults, true);
 
             if (!isValid)
             {
-                var errorMessages = new System.Collections.Generic.List<string>();
+                var errorMessages = new List<string>();
                 foreach (var validationResult in validationResults)
                 {
                     errorMessages.Add(validationResult.ErrorMessage);
@@ -32,14 +28,16 @@ namespace Quiz.Core.Core
 
         public static bool TryValidateProperty<T>(T value, string propertyName, out string errorMessage, object instance = null)
         {
-            var validationContext = new ValidationContext(instance);
-            validationContext.MemberName = propertyName;
-            var validationResults = new System.Collections.Generic.List<ValidationResult>();
+            var validationContext = new ValidationContext(instance)
+            {
+                MemberName = propertyName
+            };
+            var validationResults = new List<ValidationResult>();
             var isValid = Validator.TryValidateProperty(value, validationContext, validationResults);
 
             if (!isValid)
             {
-                var errorMessages = new System.Collections.Generic.List<string>();
+                var errorMessages = new List<string>();
                 foreach (var validationResult in validationResults)
                 {
                     errorMessages.Add(validationResult.ErrorMessage);
