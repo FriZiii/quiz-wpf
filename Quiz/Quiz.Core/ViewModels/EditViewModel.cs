@@ -20,14 +20,14 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
             }
         }
-        public static int ID { get; set; }
         public static string QuizName { get; set; }
-        public ObservableCollection<QuestionModel> QuestionsList { get; set; } = new ObservableCollection<QuestionModel>();
+        public static ObservableCollection<QuestionModel> QuestionsList { get; set; } = new ObservableCollection<QuestionModel>();
 
         //Commands
         public RelayCommand NavigateToSearchViewCommand { get; set; }
         public RelayCommand SaveChangesCommand { get; set; }
         public RelayCommand DiscardChangesCommand { get; set; }
+        public RelayCommand GetQuestionCommand { get; set; }
 
         //Constructor
         public EditViewModel(INavigationService navigation)
@@ -36,12 +36,24 @@ namespace Quiz.Core.ViewModels
             NavigateToSearchViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
             SaveChangesCommand = new RelayCommand(o => { Console.WriteLine("SAVE"); }, o => true);
             DiscardChangesCommand = new RelayCommand(o => { Console.WriteLine("DISCARD"); }, o => true);
-            ReadQuestions();
+            GetQuestionCommand = new RelayCommand(o => PrintQuestion(), o => true);
         }
 
-        public void ReadQuestions()
+        //Methods
+        public void PrintQuestion()
         {
-            SQLiteDataAccess.GetQuestions(ID).ForEach(x => QuestionsList.Add(x));
+            Console.WriteLine("XD");
+        }
+
+        public static void InitializeEditMode(int quizID, string quizName)
+        {
+            QuestionsList.Clear();
+            SQLiteDataAccess.GetQuestions(quizID).ForEach(x => QuestionsList.Add(x));
+            foreach (var x in QuestionsList)
+            {
+                Console.WriteLine(x.QuestionNumber);
+            }
+            QuizName = quizName;
         }
     }
 }

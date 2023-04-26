@@ -65,18 +65,21 @@ namespace Quiz.Core.Repository
             {
                 connection.Open();
 
+                //Removing Answers
                 using (var command = new SQLiteCommand("DELETE FROM Answers WHERE QuestionID IN (SELECT ID FROM Questions WHERE QuizID = @quizId)", connection))
                 {
                     command.Parameters.AddWithValue("@quizId", quizId);
                     command.ExecuteNonQuery();
                 }
 
+                //Removing Questions
                 using (var command = new SQLiteCommand("DELETE FROM Questions WHERE QuizID = @quizId", connection))
                 {
                     command.Parameters.AddWithValue("@quizId", quizId);
                     command.ExecuteNonQuery();
                 }
 
+                //Removing Quiz
                 using (var command = new SQLiteCommand("DELETE FROM Quizzes WHERE ID = @quizId", connection))
                 {
                     command.Parameters.AddWithValue("@quizId", quizId);
@@ -87,7 +90,7 @@ namespace Quiz.Core.Repository
             }
         }
 
-        public static List<FoundSingleQuizModel> GetQuizz()
+        public static List<FoundSingleQuizModel> GetQuizzes()
         {
             List<FoundSingleQuizModel> quizzesFound = new List<FoundSingleQuizModel>();
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -128,14 +131,17 @@ namespace Quiz.Core.Repository
                 selectQuestionsCommand.Parameters.AddWithValue("@quizID", quizID);
 
                 SQLiteDataReader reader = selectQuestionsCommand.ExecuteReader();
+                int questionNumber = 1;
                 while (reader.Read())
                 {
                     questions.Add(new QuestionModel()
                     {
                         ID = reader.GetInt32(0),
+                        QuestionNumber = questionNumber,
                         Question = reader.GetString(1),
                         Answers = new List<AnswerModel>(),
                     });
+                    questionNumber++;
                 }
                 reader.Close();
 

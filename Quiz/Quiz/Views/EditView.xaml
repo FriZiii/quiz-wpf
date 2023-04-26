@@ -121,7 +121,7 @@
                         <DataTemplate>
                             <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 5"
                                 FontSize="22" FontWeight="Light" FontFamily="Inter"
-                                Content="{Binding ID}" Height="40" Width="170"
+                                Content="{Binding QuestionNumber}" Height="40" Width="170"
                                 Command="{Binding GetQuestionCommand}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

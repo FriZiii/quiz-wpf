@@ -45,7 +45,10 @@ namespace Quiz.Core.UserControls.ViewModels
 
             EditQuizzCommand = new RelayCommand(o =>
             {
-                EditQuizEvent?.Invoke(FoundSingleQuizModel.ID, FoundSingleQuizModel.QuizName);
+                if (FoundSingleQuizModel != null)
+                {
+                    EditQuizEvent?.Invoke(FoundSingleQuizModel.ID, FoundSingleQuizModel.QuizName);
+                }
             },
             o => true
             );
