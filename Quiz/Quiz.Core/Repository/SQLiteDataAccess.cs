@@ -147,15 +147,20 @@ namespace Quiz.Core.Repository
                     selectAnswersCommand.Parameters.AddWithValue("@questionID", questionId);
 
                     SQLiteDataReader answerReader = selectAnswersCommand.ExecuteReader();
+                    int answerID = 0;
                     while (answerReader.Read())
                     {
                         question.Answers.Add(new AnswerModel()
                         {
+                            ID = answerID,
                             Answer = answerReader.GetString(0),
                             IsCorrect = answerReader.GetBoolean(1),
-                        });
+                        }); ;
+                        answerID++;
                     }
+                    answerReader.Close();
                 }
+                connection.Close();
             }
             return questions;
         }
