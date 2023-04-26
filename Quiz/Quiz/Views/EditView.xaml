@@ -21,8 +21,10 @@
         </Grid.ColumnDefinitions>
         <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="-20 -50 0 0"
                 FontSize="32" FontWeight="Light" FontFamily="Inter"
-                Grid.Row="0" Content="🠘" Height="30" Width="70" Command="{Binding NavigateToSearchViewCommand}"
-                HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                Grid.Row="0" Height="30" Width="70" Command="{Binding NavigateToSearchViewCommand}"
+                HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock Text="🠤" Margin="0 -2.8 0 0"/>
+        </Button>
 
         <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="740" CornerRadius="15" Background="#54A0FF">
@@ -119,7 +121,8 @@
                         <DataTemplate>
                             <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 5"
                                 FontSize="22" FontWeight="Light" FontFamily="Inter"
-                                Content="x" Height="40" Width="170"/>
+                                Content="{Binding ID}" Height="40" Width="170"
+                                Command="{Binding GetQuestionCommand}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
