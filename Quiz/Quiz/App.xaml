@@ -9,8 +9,10 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ButtonLightStyle.xaml"/>
                 <ResourceDictionary Source="Styles/TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/TopBarButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/TopBarButtonLightStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ErrorTamplateStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
