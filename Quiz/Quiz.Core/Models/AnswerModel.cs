@@ -6,6 +6,7 @@ namespace Quiz.Core.Models
     public class AnswerModel : ViewModel
     {
         //Properties
+        public int ID { get; set; }
         private string _answer;
         [Required(ErrorMessage = "Must not be empty.")]
         [RegularExpression("^[^\\d\\s].*", ErrorMessage = "Name cannot start with a number")]
@@ -24,7 +25,6 @@ namespace Quiz.Core.Models
                 }
             }
         }
-
         public bool IsCorrect { get; set; } = false;
     }
 }

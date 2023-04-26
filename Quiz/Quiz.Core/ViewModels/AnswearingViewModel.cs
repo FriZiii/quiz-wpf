@@ -1,11 +1,18 @@
 ﻿using Quiz.Core.Core;
+using Quiz.Core.Models;
+using Quiz.Core.Repository;
 using Quiz.Core.Services;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Documents;
 
 namespace Quiz.Core.ViewModels
 {
     public class AnswearingViewModel : ViewModel
     {
-
+        //Properties
         private INavigationService _navigation;
         public INavigationService Navigation
         {
@@ -17,9 +24,65 @@ namespace Quiz.Core.ViewModels
             }
         }
 
+        public static ObservableCollection<QuestionModel> Questions { get; set; } = new ObservableCollection<QuestionModel>();
+        private static List<bool> UserAnswers { get; set; } = new List<bool>();
+        public AnswerModel AnswerA { get; set; } = new AnswerModel();
+        public AnswerModel AnswerB { get; set; } = new AnswerModel();
+        public AnswerModel AnswerC { get; set; } = new AnswerModel();
+        public AnswerModel AnswerD { get; set; } = new AnswerModel();
+
+        //Commands
+        public RelayCommand NextQuestionCommand { get; set; }   
+
+        //Constructor
         public AnswearingViewModel(INavigationService navigation)
         {
             Navigation = navigation;
+            NextQuestionCommand = new RelayCommand(MoveToNextQuestion, o => true);
+            InitializeQuestion();
+        }
+
+        //Methods
+
+        public void MoveToNextQuestion(object parameter)
+        {
+            if (Questions.Count >= 0)
+            {
+                UserAnswers.Add(Questions[0].Answers[int.Parse(parameter.ToString())].IsCorrect);
+            }
+
+            if(Questions.Count > 0)
+                Questions.RemoveAt(0);
+
+            if (Questions.Count > 0)
+            {
+                InitializeQuestion();
+            }
+
+            if(Questions.Count == 0)
+            {
+                Console.WriteLine("END");
+                Console.WriteLine(UserAnswers.Count(x=>x == true));
+                Navigation.NavigateTo<MainViewModel>();
+            }
+        }
+        private void InitializeQuestion()
+        {
+            AnswerA = Questions[0].Answers[0];
+            AnswerB = Questions[0].Answers[1];
+            AnswerC = Questions[0].Answers[2];
+            AnswerD = Questions[0].Answers[3];
+            OnPropertyChanged(nameof(AnswerA));
+            OnPropertyChanged(nameof(AnswerB));
+            OnPropertyChanged(nameof(AnswerC));
+            OnPropertyChanged(nameof(AnswerD));
+        }
+
+        public static void InitializeQuiz(int quizID)
+        {
+            Questions.Clear();
+            SQLiteDataAccess.GetQuestions(quizID).ForEach(x => Questions.Add(x));
+            UserAnswers.Clear();
         }
     }
 }

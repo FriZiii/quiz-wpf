@@ -33,7 +33,7 @@ namespace Quiz.Core.ViewModels
             Navigation = navigation;
             NavigateToMainViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>(); }, o => true);
 
-            FoundSingleQuizViewModel.StartQuizEvent += MoveToQuiz;
+            FoundSingleQuizViewModel.StartQuizEvent += PlayQuiz;
             FoundSingleQuizViewModel.EditQuizEvent += EditQuiz;
         }
 
@@ -59,8 +59,9 @@ namespace Quiz.Core.ViewModels
             Navigation.NavigateTo<EditViewModel>();
         }
 
-        private void MoveToQuiz(int quizID)
+        private void PlayQuiz(int quizID)
         {
+            AnswearingViewModel.InitializeQuiz(quizID);
             Navigation.NavigateTo<AnswearingViewModel>();
         }
     }
