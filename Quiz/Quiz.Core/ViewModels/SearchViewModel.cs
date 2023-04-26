@@ -41,7 +41,7 @@ namespace Quiz.Core.ViewModels
         public static void SearchQuizzes()
         {
             FoundedQuizzes.Clear();
-            SQLiteDataAccess.GetQuizz().ForEach(x => FoundedQuizzes.Add(new FoundSingleQuizViewModel
+            SQLiteDataAccess.GetQuizzes().ForEach(x => FoundedQuizzes.Add(new FoundSingleQuizViewModel
             {
                 FoundSingleQuizModel = x,
             }));
@@ -54,8 +54,7 @@ namespace Quiz.Core.ViewModels
 
         private void EditQuiz(int quizID, string quizName)
         {
-            EditViewModel.ID = quizID;
-            EditViewModel.QuizName = quizName;
+            EditViewModel.InitializeEditMode(quizID, quizName);
             Navigation.NavigateTo<EditViewModel>();
         }
 
