@@ -20,8 +20,9 @@
 
         <!--Question-->
         <Border Grid.Column="0" Grid.Row="0" CornerRadius="15" Background="#54A0FF" Margin="15 10" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal" Margin="30 5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="{Binding Questions[0].Question}" Foreground="#ffffff" FontFamily="Inter" FontSize="42" FontWeight="SemiBold" TextAlignment="Center"/>
+            <StackPanel Margin="30 5" VerticalAlignment="Center">
+                <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Questions[0].Question}"
+                         FontSize="38" VerticalAlignment="Center" BorderThickness="0" FontWeight="Medium" IsReadOnly="True"/>
             </StackPanel>
         </Border>
 
@@ -33,7 +34,8 @@
                 Height="180" Width="480">
             <StackPanel>
                 <TextBlock Text="A" HorizontalAlignment="Center" Margin="0 -50 0 0" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding AnswerD.Answer}"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding AnswerA.Answer}"
+                         FontSize="36" VerticalAlignment="Center" BorderThickness="0" FontWeight="Light" IsReadOnly="True"/>
             </StackPanel>
         </Button>
 
@@ -45,7 +47,8 @@
                 Height="180" Width="480">
             <StackPanel>
                 <TextBlock Text="B" HorizontalAlignment="Center" Margin="0 -50 0 0" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding AnswerB.Answer}"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding AnswerB.Answer}"
+                         FontSize="36" VerticalAlignment="Center" BorderThickness="0" FontWeight="Light" IsReadOnly="True"/>
             </StackPanel>
         </Button>
 
@@ -57,7 +60,8 @@
                 Height="180" Width="480">
             <StackPanel>
                 <TextBlock Text="C" HorizontalAlignment="Center" Margin="0 -50 0 0" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding AnswerC.Answer}"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding AnswerC.Answer}"
+                         FontSize="36" VerticalAlignment="Center" BorderThickness="0" FontWeight="Light" IsReadOnly="True"/>
             </StackPanel>
         </Button>
         <!--D-->
@@ -68,14 +72,24 @@
                 Height="180" Width="480">
             <StackPanel>
                 <TextBlock Text="D" HorizontalAlignment="Center" Margin="0 -50 0 0" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding AnswerD.Answer}"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding AnswerD.Answer}"
+                         FontSize="36" VerticalAlignment="Center" BorderThickness="0" FontWeight="Light" IsReadOnly="True"/>
             </StackPanel>
         </Button>
 
         <!--Finish-->
-        <Button Style="{DynamicResource ButtonStyle}" Background="#54A0FF" Foreground="#ffffff" BorderThickness="0" Margin="0 5 0 0"
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            
+            <Button Style="{DynamicResource ButtonStyle}" Background="#54A0FF" Foreground="#ffffff" BorderThickness="0" Margin="0 5 0 0"
                 FontSize="32" FontWeight="Light" FontFamily="Inter"
-                Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Finish" Height="60" Width="150"
+                Content="Finish" Height="60" Width="150"
                 Command="{Binding FinishQuizzCommand}"/>
+
+            <Border CornerRadius="15" Background="#54A0FF" Margin="15 5 0 0" Grid.ColumnSpan="2" Width="150" Height="60">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 5 0 0">
+                    <TextBlock Text="{Binding Time}" Foreground="#ffffff" FontFamily="Inter" FontSize="32" FontWeight="Light" TextAlignment="Left"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 </UserControl>
