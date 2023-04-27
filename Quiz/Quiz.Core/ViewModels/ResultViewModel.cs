@@ -18,7 +18,7 @@ namespace Quiz.Core.ViewModels
         }
 
         public static string Result { get; set; }
-
+        public static string Time { get; set; }
         //Commands
         public RelayCommand GoBackCommand { get; set; }    
 
@@ -30,9 +30,10 @@ namespace Quiz.Core.ViewModels
         }
 
         //Methods
-        public static void InicializeResult(int questionsCout, int userCorrectAnswers )
+        public static void InicializeResult(int questionsCout, int userCorrectAnswers, string time)
         {
             Result = $"You have scored {userCorrectAnswers} points out of {questionsCout}!";
+            Time = $"At time {time}";
         }
     }
 }

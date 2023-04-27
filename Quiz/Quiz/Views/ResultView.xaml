@@ -19,6 +19,12 @@
                              Width="850" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#ffffff" FontWeight="SemiBold" FontFamily="Inter"/>
                 </StackPanel>
             </Border>
+            <Border CornerRadius="15" Background="#54A0FF" Margin="0 -45 0 0 " HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="10 5">
+                    <TextBlock Text="{Binding Time}" FontSize="28" FontWeight="Light" FontFamily="Inter"
+                               HorizontalAlignment="Center" TextAlignment="Center" Foreground="#ffffff"/>
+                </StackPanel>
+            </Border>
         </StackPanel>
 
         <!--Buttons-->

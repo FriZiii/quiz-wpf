@@ -55,7 +55,7 @@
                              FontSize="32" Text="{Binding DisplayedQuestion.Answers[0].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[0].IsCorrect}"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[0].IsCorrect}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -70,7 +70,7 @@
                              FontSize="32" Text="{Binding DisplayedQuestion.Answers[1].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[1].IsCorrect}"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[1].IsCorrect}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -85,7 +85,7 @@
                              FontSize="32" Text="{Binding DisplayedQuestion.Answers[2].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[2].IsCorrect}"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[2].IsCorrect}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -100,7 +100,7 @@
                              FontSize="32" Text="{Binding DisplayedQuestion.Answers[3].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[3].IsCorrect}"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[3].IsCorrect}"/>
                 </StackPanel>
             </StackPanel>
         </Border>

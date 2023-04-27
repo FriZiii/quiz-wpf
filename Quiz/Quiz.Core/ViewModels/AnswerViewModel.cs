@@ -2,9 +2,14 @@
 using Quiz.Core.Models;
 using Quiz.Core.Repository;
 using Quiz.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Timers;
+using System.Windows.Threading;
 
 namespace Quiz.Core.ViewModels
 {
@@ -34,6 +39,22 @@ namespace Quiz.Core.ViewModels
         public RelayCommand NextQuestionCommand { get; set; }
         public RelayCommand FinishQuizzCommand { get; set; }
 
+        //Timer
+        public static DispatcherTimer timer = new DispatcherTimer();
+        public static Stopwatch stopwatch = new Stopwatch();
+        private string time;
+
+        public string Time
+        {
+            get => time;
+            set 
+            { 
+                time = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         //Constructor
         public AnswerViewModel(INavigationService navigation)
         {
@@ -41,15 +62,27 @@ namespace Quiz.Core.ViewModels
             NextQuestionCommand = new RelayCommand(MoveToNextQuestion, o => true);
             FinishQuizzCommand = new RelayCommand(o => EndQuiz(), o => true);
             InitializeQuestion();
+
+            timer.Interval = TimeSpan.FromMilliseconds(1);
+            timer.Tick += Timer_Tick;
         }
 
         //Methods
         public static void InitializeQuiz(int quizID)
         {
+            stopwatch.Reset();
             Questions.Clear();
             SQLiteDataAccess.GetQuestions(quizID).ForEach(x => Questions.Add(x));
             UserAnswers.Clear();
             TotalQuestionsCout = Questions.Count;
+            timer.Start();
+            stopwatch.Start();
+        }
+
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            TimeSpan elapsed = stopwatch.Elapsed;
+            Time = string.Format("{0:00}:{1:00}:{2:00}",elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds / 10);
         }
 
         private void MoveToNextQuestion(object parameter)
@@ -75,8 +108,10 @@ namespace Quiz.Core.ViewModels
 
         private void EndQuiz()
         {
-            ResultViewModel.InicializeResult(TotalQuestionsCout, UserAnswers.Count(x => x == true));
+            ResultViewModel.InicializeResult(TotalQuestionsCout, UserAnswers.Count(x => x == true), Time);
             Navigation.NavigateTo<ResultViewModel>();
+            timer.Stop();
+            stopwatch.Stop();
         }
 
         private void InitializeQuestion()
