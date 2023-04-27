@@ -1,5 +1,7 @@
 ﻿using Quiz.Core.Core;
 using Quiz.Core.Models;
+using Quiz.Core.ViewModels;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -29,10 +31,15 @@ namespace Quiz.Core.UserControls.ViewModels
             }
         }
 
+        //Commands
+        public RelayCommand RemoveQuestionCommand { get; set; }    
 
+        //Events
+        public static Action<object> RemoveQuestionEvent { get; set; }
         //Constructor
         public NewQuestionViewModel()
         {
+            RemoveQuestionCommand = new RelayCommand(o => { RemoveQuestionEvent?.Invoke(this); }, o => true);
             for (int i = 0; i<4; i++)
             {
                 Answers.Add(new AnswerModel());

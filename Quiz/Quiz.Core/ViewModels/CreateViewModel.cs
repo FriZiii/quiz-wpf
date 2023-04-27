@@ -2,6 +2,7 @@
 using Quiz.Core.Repository;
 using Quiz.Core.Services;
 using Quiz.Core.UserControls.ViewModels;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -61,8 +62,15 @@ namespace Quiz.Core.ViewModels
             AddNewQuestionCommand = new RelayCommand(o => AddNewQuestion(), o => true);
             CreateQuizzCommand = new RelayCommand(o => CreateQuizz(), o => IsValid());
 
+            NewQuestionViewModel.RemoveQuestionEvent += RemoveQuestion;
+
         }
-        
+
+        private void RemoveQuestion(object question)
+        {
+            NewQuestionList.Remove((NewQuestionViewModel)question);
+        }
+
         //Methods
         public void AddNewQuestion()
         {
