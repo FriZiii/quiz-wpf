@@ -30,21 +30,31 @@ namespace Quiz.Core.ViewModels
         public AnswerModel AnswerB { get; set; } = new AnswerModel();
         public AnswerModel AnswerC { get; set; } = new AnswerModel();
         public AnswerModel AnswerD { get; set; } = new AnswerModel();
+        public static int TotalQuestionsCout { get; set; } 
 
         //Commands
-        public RelayCommand NextQuestionCommand { get; set; }   
+        public RelayCommand NextQuestionCommand { get; set; }
+        public RelayCommand FinishQuizzCommand { get; set; }
 
         //Constructor
         public AnswearingViewModel(INavigationService navigation)
         {
             Navigation = navigation;
             NextQuestionCommand = new RelayCommand(MoveToNextQuestion, o => true);
+            FinishQuizzCommand = new RelayCommand(o => EndQuiz(), o => true);
             InitializeQuestion();
         }
 
         //Methods
+        public static void InitializeQuiz(int quizID)
+        {
+            Questions.Clear();
+            SQLiteDataAccess.GetQuestions(quizID).ForEach(x => Questions.Add(x));
+            UserAnswers.Clear();
+            TotalQuestionsCout = Questions.Count;
+        }
 
-        public void MoveToNextQuestion(object parameter)
+        private void MoveToNextQuestion(object parameter)
         {
             if (Questions.Count >= 0)
             {
@@ -60,11 +70,17 @@ namespace Quiz.Core.ViewModels
             }
 
             if(Questions.Count == 0)
-            { 
-                ResultViewModel.InicializeResult(UserAnswers.Count, UserAnswers.Count(x => x == true));
-                Navigation.NavigateTo<ResultViewModel>();
+            {
+                EndQuiz();
             }
         }
+
+        private void EndQuiz()
+        {
+            ResultViewModel.InicializeResult(TotalQuestionsCout, UserAnswers.Count(x => x == true));
+            Navigation.NavigateTo<ResultViewModel>();
+        }
+
         private void InitializeQuestion()
         {
             AnswerA = Questions[0].Answers[0];
@@ -75,13 +91,6 @@ namespace Quiz.Core.ViewModels
             OnPropertyChanged(nameof(AnswerB));
             OnPropertyChanged(nameof(AnswerC));
             OnPropertyChanged(nameof(AnswerD));
-        }
-
-        public static void InitializeQuiz(int quizID)
-        {
-            Questions.Clear();
-            SQLiteDataAccess.GetQuestions(quizID).ForEach(x => Questions.Add(x));
-            UserAnswers.Clear();
         }
     }
 }

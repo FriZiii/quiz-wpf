@@ -76,6 +76,7 @@
         <!--Finish-->
         <Button Style="{DynamicResource ButtonStyle}" Background="#54A0FF" Foreground="#ffffff" BorderThickness="0" Margin="0 5 0 0"
                 FontSize="32" FontWeight="Light" FontFamily="Inter"
-                 Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Finish" Height="60" Width="150"/>
+                Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Finish" Height="60" Width="150"
+                Command="{Binding FinishQuizzCommand}"/>
     </Grid>
 </UserControl>
