@@ -61,7 +61,26 @@ namespace Quiz.Core.Repository
 
         public static void RemoveQuiz(int quizId)
         {
-            using(var connection = new SQLiteConnection(LoadConnectionString()))
+
+            RemoveQuestions(quizId);
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Open();
+
+                //Removing Quiz
+                using (var command = new SQLiteCommand("DELETE FROM Quizzes WHERE ID = @quizId", connection))
+                {
+                    command.Parameters.AddWithValue("@quizId", quizId);
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
+        public static void RemoveQuestions(int quizId)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Open();
 
@@ -79,13 +98,42 @@ namespace Quiz.Core.Repository
                     command.ExecuteNonQuery();
                 }
 
-                //Removing Quiz
-                using (var command = new SQLiteCommand("DELETE FROM Quizzes WHERE ID = @quizId", connection))
-                {
-                    command.Parameters.AddWithValue("@quizId", quizId);
-                    command.ExecuteNonQuery();
-                }
+                connection.Close();
+            }
+        }
 
+        public static void AddQuestions(int quizId, List<SingleQuestionViewModel> questions)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Open();
+
+                //Adding questions and answers
+                foreach (var question in questions)
+                {
+                    //Adding questions
+                    string insertQuestionSql = "INSERT INTO Questions (Text, QuizID) VALUES (@text, @quizId);";
+                    var insertQuestionCommand = new SQLiteCommand(insertQuestionSql, connection);
+                    insertQuestionCommand.Parameters.AddWithValue("@text", question.QuestionModel.Question);
+                    insertQuestionCommand.Parameters.AddWithValue("@quizId", quizId);
+                    insertQuestionCommand.ExecuteNonQuery();
+
+                    //Getting ID of added questions
+                    string selectQuestionSql = "SELECT last_insert_rowid();";
+                    var selectQuestionCommand = new SQLiteCommand(selectQuestionSql, connection);
+                    int questionId = Convert.ToInt32(selectQuestionCommand.ExecuteScalar());
+
+                    //Adding answers
+                    foreach (var answer in question.QuestionModel.Answers)
+                    {
+                        string insertAnswerSql = "INSERT INTO Answers (Text, IsCorrect, QuestionID) VALUES (@text, @isCorrect, @questionId);";
+                        var insertAnswerCommand = new SQLiteCommand(insertAnswerSql, connection);
+                        insertAnswerCommand.Parameters.AddWithValue("@text", answer.Answer);
+                        insertAnswerCommand.Parameters.AddWithValue("@isCorrect", answer.IsCorrect);
+                        insertAnswerCommand.Parameters.AddWithValue("@questionId", questionId);
+                        insertAnswerCommand.ExecuteNonQuery();
+                    }
+                }
                 connection.Close();
             }
         }

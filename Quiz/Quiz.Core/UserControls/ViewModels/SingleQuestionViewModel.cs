@@ -9,13 +9,16 @@ namespace Quiz.Core.UserControls.ViewModels
         //Properties
         public RelayCommand GetQuestionCommand { get; set; }
         public QuestionModel QuestionModel { get; set; }
+        public int QuestionId { get; set; }
 
-        public static Action<QuestionModel> ShowQuestionEvent;
+
+        public static Action<QuestionModel, int> ShowQuestionEvent;
         //Constructor
-        public SingleQuestionViewModel(QuestionModel model)
+        public SingleQuestionViewModel(QuestionModel model, int questionID)
         {
+            QuestionId = questionID;
             QuestionModel = model;
-            GetQuestionCommand = new RelayCommand(o => { ShowQuestionEvent?.Invoke(QuestionModel); }, o => true);
+            GetQuestionCommand = new RelayCommand(o => { ShowQuestionEvent?.Invoke(QuestionModel, QuestionId); }, o => true);
         }
 
         //Methods

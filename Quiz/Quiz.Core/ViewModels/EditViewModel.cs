@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Quiz.Core.Core;
 using Quiz.Core.Models;
 using Quiz.Core.Repository;
@@ -22,10 +23,13 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public static int DisplayedQuizID { get; set; }
+        public static int DisplayedQuestionID { get; set; }
         public static string QuizName { get; set; }
+        public QuestionModel DisplayedQuestion { get; set; } = new QuestionModel();
         public static List<QuestionModel> QuestionsList { get; set; } = new List<QuestionModel>();
         public static ObservableCollection<SingleQuestionViewModel> SingleQuestions { get; set; } = new ObservableCollection<SingleQuestionViewModel>();
-        public QuestionModel DisplayedQuestion { get; set; } = new QuestionModel();
 
         //Commands
         public RelayCommand NavigateToSearchViewCommand { get; set; }
@@ -37,24 +41,47 @@ namespace Quiz.Core.ViewModels
         {
             Navigation = navigation;
             NavigateToSearchViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
-            SaveChangesCommand = new RelayCommand(o => { Console.WriteLine("SAVE"); }, o => true);
-            DiscardChangesCommand = new RelayCommand(o => { Console.WriteLine("DISCARD"); }, o => true);
+            SaveChangesCommand = new RelayCommand(o => { SaveChanges(); }, o => true);
+            DiscardChangesCommand = new RelayCommand(o => { DiscardChanges(); }, o => true);
             SingleQuestionViewModel.ShowQuestionEvent += ShowQuestion;
         }
 
-        private void ShowQuestion(QuestionModel question)
+        //Methods
+        public void SaveChanges()
+        {
+            SQLiteDataAccess.RemoveQuestions(DisplayedQuizID);
+            SQLiteDataAccess.AddQuestions(DisplayedQuizID, SingleQuestions.ToList());
+        }
+
+        public void DiscardChanges()
+        {
+            ReloadLists(DisplayedQuizID);
+            DisplayedQuestion = SingleQuestions[DisplayedQuestionID].QuestionModel;
+            OnPropertyChanged(nameof(DisplayedQuestion));
+        }
+
+        private void ShowQuestion(QuestionModel question, int questionID)
         {
             DisplayedQuestion = question;
+            DisplayedQuestionID = questionID;
             OnPropertyChanged(nameof(DisplayedQuestion));   
         }
 
-        //Methods
         public static void InitializeEditMode(int quizID, string quizName)
         {
+            DisplayedQuizID = quizID;
+            QuizName = quizName;
+
+            ReloadLists(DisplayedQuizID);
+        }
+
+        private static void ReloadLists(int quizID)
+        {
+            SingleQuestions.Clear();
             QuestionsList.Clear();
             SQLiteDataAccess.GetQuestions(quizID).ForEach(x => QuestionsList.Add(x));
-            QuestionsList.ForEach(x => SingleQuestions.Add(new SingleQuestionViewModel(x)));
-            QuizName = quizName;
+            int index = 0;
+            QuestionsList.ForEach(x => { SingleQuestions.Add(new SingleQuestionViewModel(x, index++)); });
         }
     }
 }

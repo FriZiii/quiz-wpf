@@ -40,7 +40,7 @@
                 <TextBlock FontSize="32" Text="{Binding Question.QuestionNumber, StringFormat=#{0}}"  VerticalAlignment="Center" Margin="0 0 20 0" Foreground="#ffffff"/>
                 <TextBox Style="{DynamicResource TextBoxStyle}"
                          Validation.ErrorTemplate="{StaticResource errorTemplate}"
-                         Text="{Binding DisplayedQuestion.Question}"
+                         Text="{Binding DisplayedQuestion.Question, Mode=TwoWay}"
                          FontSize="32" Width="660" VerticalAlignment="Center" BorderThickness="0"/>
             </StackPanel>
         </Border>
@@ -52,10 +52,10 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 30">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="290" Margin="0 0 10 0"
-                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[0].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[0].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[0].IsCorrect}"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[0].IsCorrect, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -67,10 +67,10 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 30">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="290" Margin="0 0 10 0"
-                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[1].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[1].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[1].IsCorrect}"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[1].IsCorrect, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -82,10 +82,10 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 30">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="290" Margin="0 0 10 0"
-                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[2].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[2].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[2].IsCorrect}"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[2].IsCorrect, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -97,10 +97,10 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 30">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="290" Margin="0 0 10 0"
-                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[3].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[3].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[3].IsCorrect}"/>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding DisplayedQuestion.Answers[3].IsCorrect, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
