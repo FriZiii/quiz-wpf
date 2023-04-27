@@ -27,7 +27,6 @@ namespace Quiz.Core.ViewModels
         private string? _name;
         [Required(ErrorMessage = "Must not be empty.")]
         [RegularExpression("^[^\\d\\s].*", ErrorMessage = "Name cannot start with a number")]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "Must be at least 3 characters")]
         public string? Name
         {
             get => _name;

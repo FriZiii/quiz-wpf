@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Quiz.Core.Core;
 using Quiz.Core.Models;
 using Quiz.Core.Repository;
 using Quiz.Core.Services;
+using Quiz.Core.UserControls.ViewModels;
 
 namespace Quiz.Core.ViewModels
 {
@@ -21,13 +23,14 @@ namespace Quiz.Core.ViewModels
             }
         }
         public static string QuizName { get; set; }
-        public static ObservableCollection<QuestionModel> QuestionsList { get; set; } = new ObservableCollection<QuestionModel>();
+        public static List<QuestionModel> QuestionsList { get; set; } = new List<QuestionModel>();
+        public static ObservableCollection<SingleQuestionViewModel> SingleQuestions { get; set; } = new ObservableCollection<SingleQuestionViewModel>();
+        public QuestionModel DisplayedQuestion { get; set; } = new QuestionModel();
 
         //Commands
         public RelayCommand NavigateToSearchViewCommand { get; set; }
         public RelayCommand SaveChangesCommand { get; set; }
         public RelayCommand DiscardChangesCommand { get; set; }
-        public RelayCommand GetQuestionCommand { get; set; }
 
         //Constructor
         public EditViewModel(INavigationService navigation)
@@ -36,23 +39,21 @@ namespace Quiz.Core.ViewModels
             NavigateToSearchViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
             SaveChangesCommand = new RelayCommand(o => { Console.WriteLine("SAVE"); }, o => true);
             DiscardChangesCommand = new RelayCommand(o => { Console.WriteLine("DISCARD"); }, o => true);
-            GetQuestionCommand = new RelayCommand(o => PrintQuestion(), o => true);
+            SingleQuestionViewModel.ShowQuestionEvent += ShowQuestion;
+        }
+
+        private void ShowQuestion(QuestionModel question)
+        {
+            DisplayedQuestion = question;
+            OnPropertyChanged(nameof(DisplayedQuestion));   
         }
 
         //Methods
-        public void PrintQuestion()
-        {
-            Console.WriteLine("XD");
-        }
-
         public static void InitializeEditMode(int quizID, string quizName)
         {
             QuestionsList.Clear();
             SQLiteDataAccess.GetQuestions(quizID).ForEach(x => QuestionsList.Add(x));
-            foreach (var x in QuestionsList)
-            {
-                Console.WriteLine(x.QuestionNumber);
-            }
+            QuestionsList.ForEach(x => SingleQuestions.Add(new SingleQuestionViewModel(x)));
             QuizName = quizName;
         }
     }

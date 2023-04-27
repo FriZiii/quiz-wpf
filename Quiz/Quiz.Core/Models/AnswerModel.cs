@@ -10,7 +10,6 @@ namespace Quiz.Core.Models
         private string _answer;
         [Required(ErrorMessage = "Must not be empty.")]
         [RegularExpression("^[^\\d\\s].*", ErrorMessage = "Name cannot start with a number")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must be at least 3 characters")]
         public string Answer
         {
             get => _answer;

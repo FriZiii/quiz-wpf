@@ -37,9 +37,10 @@
         <!--Question-->
         <Border Grid.Column="1" Grid.Row="1" CornerRadius="15" Background="#54A0FF" Margin="15 15" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" Margin="10 5" HorizontalAlignment="Center">
-                <TextBlock FontSize="32" Text="{Binding QuestionNumber, StringFormat=#{0}}"  VerticalAlignment="Center" Margin="0 0 20 0" Foreground="#ffffff"/>
+                <TextBlock FontSize="32" Text="{Binding Question.QuestionNumber, StringFormat=#{0}}"  VerticalAlignment="Center" Margin="0 0 20 0" Foreground="#ffffff"/>
                 <TextBox Style="{DynamicResource TextBoxStyle}"
                          Validation.ErrorTemplate="{StaticResource errorTemplate}"
+                         Text="{Binding DisplayedQuestion.Question}"
                          FontSize="32" Width="660" VerticalAlignment="Center" BorderThickness="0"/>
             </StackPanel>
         </Border>
@@ -51,7 +52,7 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 30">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="290" Margin="0 0 10 0"
-                             FontSize="32" Text="{Binding Answers[0].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[0].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
                     <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[0].IsCorrect}"/>
@@ -66,7 +67,7 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 30">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="290" Margin="0 0 10 0"
-                             FontSize="32" Text="{Binding Answers[1].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[1].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
                     <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[1].IsCorrect}"/>
@@ -81,7 +82,7 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 30">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="290" Margin="0 0 10 0"
-                             FontSize="32" Text="{Binding Answers[2].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[2].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
                     <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[2].IsCorrect}"/>
@@ -96,7 +97,7 @@
                        FontSize="32" Foreground="#ffffff"/>
                 <StackPanel Orientation="Horizontal" Margin="20 30">
                     <TextBox Style="{DynamicResource TextBoxStyle}" Width="290" Margin="0 0 10 0"
-                             FontSize="32" Text="{Binding Answers[3].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="32" Text="{Binding DisplayedQuestion.Answers[3].Answer, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource errorTemplate}"
                              BorderThickness="0"/>
                     <CheckBox VerticalAlignment="Center" IsChecked="{Binding Answers[3].IsCorrect}"/>
@@ -116,12 +117,12 @@
 
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Margin="0 35 0 15">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Height="500">
-                <ItemsControl ItemsSource="{Binding QuestionsList}">
+                <ItemsControl ItemsSource="{Binding SingleQuestions}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 5"
                                 FontSize="22" FontWeight="Light" FontFamily="Inter"
-                                Content="{Binding QuestionNumber}" Height="40" Width="170"
+                                Content="{Binding QuestionModel.QuestionNumber}" Height="40" Width="170"
                                 Command="{Binding GetQuestionCommand}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
