@@ -25,7 +25,18 @@ namespace Quiz.Core.Models
                 }
             }
         }
-        public int QuestionNumber { get; set; }
-        public List<AnswerModel> Answers { get; set; }
+
+        private int questionNumber;
+        public int QuestionNumber
+        {
+            get { return questionNumber; }
+            set 
+            { 
+                questionNumber = value; 
+                OnPropertyChanged(nameof(QuestionNumber));
+            }
+        }
+
+        public List<AnswerModel> Answers { get; set; } = new List<AnswerModel>();
     }
 }

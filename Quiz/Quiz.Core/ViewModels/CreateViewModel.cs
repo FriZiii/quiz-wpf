@@ -37,10 +37,10 @@ namespace Quiz.Core.ViewModels
                 OnPropertyChanged();
                 if (value == null) return;
                 CustomValidator.TryValidateProperty(value, nameof(Name), out var errorMessage, this);
-                if (!string.IsNullOrEmpty(errorMessage))
-                {
-                    throw new ValidationException(errorMessage);
-                }
+                //if (!string.IsNullOrEmpty(errorMessage))
+                //{
+                //    throw new ValidationException(errorMessage);
+                //}
             }
         }
 
