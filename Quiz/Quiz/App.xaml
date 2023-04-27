@@ -28,8 +28,8 @@
                 <view:SearchView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type TypeName=viewModel:AnswearingViewModel}">
-                <view:AnswearingView/>
+            <DataTemplate DataType="{x:Type TypeName=viewModel:AnswerViewModel}">
+                <view:AnswerView/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type TypeName=viewModel:EditViewModel}">

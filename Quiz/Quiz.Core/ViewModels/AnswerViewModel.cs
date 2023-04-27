@@ -2,15 +2,13 @@
 using Quiz.Core.Models;
 using Quiz.Core.Repository;
 using Quiz.Core.Services;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Documents;
 
 namespace Quiz.Core.ViewModels
 {
-    public class AnswearingViewModel : ViewModel
+    public class AnswerViewModel : ViewModel
     {
         //Properties
         private INavigationService _navigation;
@@ -37,7 +35,7 @@ namespace Quiz.Core.ViewModels
         public RelayCommand FinishQuizzCommand { get; set; }
 
         //Constructor
-        public AnswearingViewModel(INavigationService navigation)
+        public AnswerViewModel(INavigationService navigation)
         {
             Navigation = navigation;
             NextQuestionCommand = new RelayCommand(MoveToNextQuestion, o => true);

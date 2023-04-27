@@ -60,8 +60,8 @@ namespace Quiz.Core.ViewModels
 
         private void PlayQuiz(int quizID)
         {
-            AnswearingViewModel.InitializeQuiz(quizID);
-            Navigation.NavigateTo<AnswearingViewModel>();
+            AnswerViewModel.InitializeQuiz(quizID);
+            Navigation.NavigateTo<AnswerViewModel>();
         }
     }
 }
