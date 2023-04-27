@@ -1,6 +1,6 @@
 ﻿namespace Quiz.Core.Models
 {
-    public class FoundSingleQuizModel
+    public class SingleQuizModel
     {
         //Properties
         public int ID { get; set; }

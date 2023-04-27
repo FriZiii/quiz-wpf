@@ -138,9 +138,9 @@ namespace Quiz.Core.Repository
             }
         }
 
-        public static List<FoundSingleQuizModel> GetQuizzes()
+        public static List<SingleQuizModel> GetQuizzes()
         {
-            List<FoundSingleQuizModel> quizzesFound = new List<FoundSingleQuizModel>();
+            List<SingleQuizModel> quizzesFound = new List<SingleQuizModel>();
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Open();
@@ -154,7 +154,7 @@ namespace Quiz.Core.Repository
                     {
                         int quizId = reader.GetInt32(0);
                         string quizName = reader.GetString(1);
-                        var quizInfo = new FoundSingleQuizModel()
+                        var quizInfo = new SingleQuizModel()
                         {
                             ID = quizId,
                             QuizName = quizName,

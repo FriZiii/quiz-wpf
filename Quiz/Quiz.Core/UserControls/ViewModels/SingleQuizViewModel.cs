@@ -1,16 +1,15 @@
-﻿using System;
-using Quiz.Core.Core;
+﻿using Quiz.Core.Core;
 using Quiz.Core.Models;
 using Quiz.Core.Repository;
-using Quiz.Core.Services;
 using Quiz.Core.ViewModels;
+using System;
 
 namespace Quiz.Core.UserControls.ViewModels
 {
-    public class FoundSingleQuizViewModel: ViewModel
+    public class SingleQuizViewModel: ViewModel
     {
         //Properties
-        public FoundSingleQuizModel FoundSingleQuizModel { get; set; }
+        public SingleQuizModel FoundSingleQuizModel { get; set; }
 
         //Commands
         public RelayCommand PlayQuizzCommand { get; set; }
@@ -20,7 +19,7 @@ namespace Quiz.Core.UserControls.ViewModels
         public static event Action<int> StartQuizEvent;
         public static event Action<int, string> EditQuizEvent;
         //Constructor
-        public FoundSingleQuizViewModel()
+        public SingleQuizViewModel()
         {
             PlayQuizzCommand = new RelayCommand(o =>
             {

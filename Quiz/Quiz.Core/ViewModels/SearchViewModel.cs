@@ -10,7 +10,7 @@ namespace Quiz.Core.ViewModels
     public class SearchViewModel : ViewModel
     {
         //Properties
-        public static ObservableCollection<FoundSingleQuizViewModel> FoundedQuizzes { get; set; } = new ObservableCollection<FoundSingleQuizViewModel>();
+        public static ObservableCollection<SingleQuizViewModel> FoundedQuizzes { get; set; } = new ObservableCollection<SingleQuizViewModel>();
         private INavigationService _navigation;
         public INavigationService Navigation
         {
@@ -33,15 +33,15 @@ namespace Quiz.Core.ViewModels
             Navigation = navigation;
             NavigateToMainViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>(); }, o => true);
 
-            FoundSingleQuizViewModel.StartQuizEvent += PlayQuiz;
-            FoundSingleQuizViewModel.EditQuizEvent += EditQuiz;
+            SingleQuizViewModel.StartQuizEvent += PlayQuiz;
+            SingleQuizViewModel.EditQuizEvent += EditQuiz;
         }
 
         //Methods
         public static void SearchQuizzes()
         {
             FoundedQuizzes.Clear();
-            SQLiteDataAccess.GetQuizzes().ForEach(x => FoundedQuizzes.Add(new FoundSingleQuizViewModel
+            SQLiteDataAccess.GetQuizzes().ForEach(x => FoundedQuizzes.Add(new SingleQuizViewModel
             {
                 FoundSingleQuizModel = x,
             }));
