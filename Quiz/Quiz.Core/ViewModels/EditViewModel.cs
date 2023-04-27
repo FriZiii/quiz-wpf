@@ -41,7 +41,7 @@ namespace Quiz.Core.ViewModels
         {
             Navigation = navigation;
             NavigateToSearchViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
-            SaveChangesCommand = new RelayCommand(o => { SaveChanges(); }, o => true);
+            SaveChangesCommand = new RelayCommand(o => { SaveChanges(); }, o => IsValid());
             DiscardChangesCommand = new RelayCommand(o => { DiscardChanges(); }, o => true);
             SingleQuestionViewModel.ShowQuestionEvent += ShowQuestion;
         }
@@ -82,6 +82,33 @@ namespace Quiz.Core.ViewModels
             SQLiteDataAccess.GetQuestions(quizID).ForEach(x => QuestionsList.Add(x));
             int index = 0;
             QuestionsList.ForEach(x => { SingleQuestions.Add(new SingleQuestionViewModel(x, index++)); });
+        }
+
+        public bool IsValid()
+        {
+            foreach (var question in SingleQuestions)
+            {
+                CustomValidator.TryValidateObject(question.QuestionModel, out var errorMessage);
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    return false;
+                }
+
+                if (!question.QuestionModel.Answers.Any(a => a.IsCorrect))
+                {
+                    return false;
+                }
+
+                foreach (var answer in question.QuestionModel.Answers)
+                {
+                    CustomValidator.TryValidateObject(answer, out errorMessage);
+                    if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
