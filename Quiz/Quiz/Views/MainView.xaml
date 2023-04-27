@@ -15,11 +15,11 @@
         <TextBlock Grid.Row="0" Text="QUIZ" FontSize="240" FontWeight="ExtraBold" FontFamily="Inter" Foreground="#2E86DE"
                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 100 0 0"/>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 60 0"
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 30 0"
                 FontSize="64" FontWeight="Light" FontFamily="Inter"
                 Grid.Column="0" Content="Create" Height="200" Width="400" Command="{Binding NavigateToCreateCommand}"/>
-            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 -60 0"
+            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="30 0 0 0"
                     FontSize="64" FontWeight="Light" FontFamily="Inter" 
                     Grid.Column="1" Content="Search" Height="200" Width="400" Command="{Binding NavigateToSearchCommand}"/>
         </StackPanel>
