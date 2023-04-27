@@ -60,10 +60,9 @@ namespace Quiz.Core.ViewModels
             }
 
             if(Questions.Count == 0)
-            {
-                Console.WriteLine("END");
-                Console.WriteLine(UserAnswers.Count(x=>x == true));
-                Navigation.NavigateTo<MainViewModel>();
+            { 
+                ResultViewModel.InicializeResult(UserAnswers.Count, UserAnswers.Count(x => x == true));
+                Navigation.NavigateTo<ResultViewModel>();
             }
         }
         private void InitializeQuestion()

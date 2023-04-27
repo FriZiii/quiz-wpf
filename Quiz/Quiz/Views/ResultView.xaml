@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Quiz.Views.ResultView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Quiz.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1280">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--Score-->
+        <StackPanel Grid.Row="0">
+            <Border CornerRadius="15" Background="#54A0FF" Margin="55" HorizontalAlignment="Center" Width="900">
+                <StackPanel Orientation="Horizontal" Margin="25 20">
+                    <TextBlock Text="{Binding Result}" FontSize="42" 
+                             Width="850" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#ffffff" FontWeight="SemiBold" FontFamily="Inter"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <!--Buttons-->
+        <Button Style="{DynamicResource ButtonStyle}" Grid.Row="1" Background="#54A0FF" Foreground="#ffffff" BorderThickness="0" Margin="0 5 0 0"
+                FontSize="32" FontWeight="Light" FontFamily="Inter"
+                Content="Go back" Height="60" Width="150"
+                VerticalAlignment="Center"
+                Command="{Binding GoBackCommand}"/>
+    </Grid>
+</UserControl>

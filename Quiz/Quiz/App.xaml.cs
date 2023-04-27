@@ -24,6 +24,7 @@ namespace Quiz
             services.AddSingleton<SearchViewModel>();
             services.AddSingleton<CreateViewModel>();
             services.AddSingleton<AnswearingViewModel>();
+            services.AddSingleton<ResultViewModel>();
             services.AddSingleton<EditViewModel>();
 
             services.AddSingleton<INavigationService, NavigationService>();
