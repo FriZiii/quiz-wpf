@@ -20,13 +20,15 @@ namespace Quiz.Core.ViewModels
         public static string Result { get; set; }
         public static string Time { get; set; }
         //Commands
-        public RelayCommand GoBackCommand { get; set; }    
+        public RelayCommand NavigateToMainCommand { get; set; }    
+        public RelayCommand NavigateToSearchCommand { get; set; }   
 
         //Constructor
         public ResultViewModel(INavigationService navigationService)
         {
             Navigation = navigationService;
-            GoBackCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>(); }, o => true);
+            NavigateToMainCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>(); }, o => true);
+            NavigateToSearchCommand = new RelayCommand(o => { Navigation.NavigateTo<SearchViewModel>(); }, o => true);
         }
 
         //Methods

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using Quiz.Core.Core;
+﻿using Quiz.Core.Core;
 using Quiz.Core.Models;
 using Quiz.Core.Repository;
 using Quiz.Core.Services;
 using Quiz.Core.UserControls.ViewModels;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Quiz.Core.ViewModels
 {

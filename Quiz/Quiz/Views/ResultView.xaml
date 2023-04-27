@@ -12,7 +12,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!--Score-->
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0" Margin="0 40 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border CornerRadius="15" Background="#54A0FF" Margin="55" HorizontalAlignment="Center" Width="900">
                 <StackPanel Orientation="Horizontal" Margin="25 20">
                     <TextBlock Text="{Binding Result}" FontSize="42" 
@@ -28,10 +28,13 @@
         </StackPanel>
 
         <!--Buttons-->
-        <Button Style="{DynamicResource ButtonStyle}" Grid.Row="1" Background="#54A0FF" Foreground="#ffffff" BorderThickness="0" Margin="0 5 0 0"
-                FontSize="32" FontWeight="Light" FontFamily="Inter"
-                Content="Go back" Height="60" Width="150"
-                VerticalAlignment="Center"
-                Command="{Binding GoBackCommand}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 60">
+            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="0 0 30 0"
+                FontSize="64" FontWeight="Light" FontFamily="Inter"
+                Grid.Column="0" Content="Main" Height="200" Width="400" Command="{Binding NavigateToMainCommand}"/>
+            <Button Style="{DynamicResource ButtonStyle}" Background="#2E86DE" Foreground="#ffffff" BorderThickness="0" Margin="30 0 0 0"
+                    FontSize="64" FontWeight="Light" FontFamily="Inter" 
+                    Grid.Column="1" Content="Search" Height="200" Width="400" Command="{Binding NavigateToSearchCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
