@@ -34,6 +34,7 @@ namespace Quiz.Core.ViewModels
         public AnswerModel AnswerC { get; set; } = new AnswerModel();
         public AnswerModel AnswerD { get; set; } = new AnswerModel();
         public static int TotalQuestionsCout { get; set; } 
+        private static Action InicializeEvent { get; set; }
 
         //Commands
         public RelayCommand NextQuestionCommand { get; set; }
@@ -65,6 +66,8 @@ namespace Quiz.Core.ViewModels
 
             timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.Tick += Timer_Tick;
+
+            InicializeEvent += Initialize;
         }
 
         //Methods
@@ -75,6 +78,7 @@ namespace Quiz.Core.ViewModels
             SQLiteDataAccess.GetQuestions(quizID).ForEach(x => Questions.Add(x));
             UserAnswers.Clear();
             TotalQuestionsCout = Questions.Count;
+            InicializeEvent?.Invoke();
             timer.Start();
             stopwatch.Start();
         }
@@ -112,6 +116,11 @@ namespace Quiz.Core.ViewModels
             Navigation.NavigateTo<ResultViewModel>();
             timer.Stop();
             stopwatch.Stop();
+        }
+
+        private void Initialize()
+        {
+            InitializeQuestion();
         }
 
         private void InitializeQuestion()
