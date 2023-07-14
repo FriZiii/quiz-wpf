@@ -30,9 +30,9 @@ WPF, MVVM, C#, SQLite,
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Example Color | ![#2E86DE](https://via.placeholder.com/10/2E86DE?text=+) #2E86DE |
-| Example Color | ![#226DB8](https://via.placeholder.com/10/226DB8?text=+) #226DB8 |
-| Example Color | ![#ECF0F1](https://via.placeholder.com/10/ECF0F1?text=+) #ECF0F1 |
+| Primary Color | ![#2E86DE](https://via.placeholder.com/10/2E86DE?text=+) #2E86DE |
+| Secondary  Color | ![#226DB8](https://via.placeholder.com/10/226DB8?text=+) #226DB8 |
+| Background Color | ![#ECF0F1](https://via.placeholder.com/10/ECF0F1?text=+) #ECF0F1 |
 
 
 
